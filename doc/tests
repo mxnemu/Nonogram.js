@@ -1,1 +1,23 @@
-# insert planned unit tests #
+These statements resemble the unit tests that need to be written based on the
+proposed architecture. This file will stay in place until the actual tests are
+written. The QUnit library will be used for testing. The tests are grouped by
+object names and will be notated as statements that we expect to be true if that
+object is working correctly.
+
+Snapshot
+ * all cells of an uninitialized instance are set to the correct default value
+   (CellStatus.INACTIVE)
+ * getting and setting a cell status works like expected (matching position,
+   matching values)
+ * two snapshots are allways equal when all cells are equal
+ * a Snapshot is valid if it equals an instance of SolutionSnapshot
+
+History
+ * an empty History does not yield any Snapshot
+ * if the History is not empfy, the current Snapshot is always the last one that
+   was pushed on top
+ * pushed Snapshot instances are provided in reverse order when popped
+
+Application
+ * a Game can be saved and restored using an arbitrary name as identification
+
