@@ -10,13 +10,10 @@ Snapshot
  * getting and setting a cell status works like expected (matching position,
    matching values)
  * two snapshots are allways equal when all cells are equal
- * a Snapshot is valid if it equals an instance of SolutionSnapshot
+ * a Snapshot is valid if its cells are a subset of a SolutionSnapshot
 
 History
  * an empty History does not yield any Snapshot
- * if the History is not empfy, the current Snapshot is always the last one that
-   was pushed on top
- * pushed Snapshot instances are provided in reverse order when popped
 
 Application
  * a Game can be saved and restored using an arbitrary name as identification
