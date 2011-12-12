@@ -17,7 +17,7 @@ function CellStatus(type) {
  * Validate the type of this object, when no parameter is given,
  * otherwise check if the given string is a valid constant.
  */
-CellStatus.prototype.validate(type) {
+CellStatus.prototype.validate = function(type) {
     if (!type) {
         type = this.type;
     }
