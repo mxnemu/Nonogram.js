@@ -32,7 +32,7 @@ Snapshot.prototype.isEqual = function(otherSnapshot) {
  * @treturn boolean return true if the required cells are marked as sure
  */
 Snapshot.prototype.isValid = function(solutionSnapshot) {
-
+    return this.cells == solutionSnapshot.cells;
 }
 
 /**
