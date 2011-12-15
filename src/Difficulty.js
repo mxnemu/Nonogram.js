@@ -1,34 +1,38 @@
 /**
  * Store the difficulty of a game.
- * @param String sType Values are 'Easy', 'Medium' or 'Hard', default value is 'Easy'.
+ * @param String sType Values are 'EASY', 'MEDIUM' or 'HARD', default value is 'EASY'.
  */
 function Difficulty(sType) {
     
-    /** private String sDefault */
-    var sDefault =  'Easy';
+    /** private String sEASY */
+    var sEASY =     'EASY';
     
-    /** private String sEasy */
-    var sEasy =     'Easy';
+    /** private String sMEDIUM */
+    var sMEDIUM =   'MEDIUM';
     
-    /** private String sMedium */
-    var sMedium =   'Medium';
+    /** private String sHARD */
+    var sHARD =     'HARD';
     
-    /** private String sHard */
-    var sHard =     'Hard';
+    /** private String sDEFAULT */
+    var sDEFAULT =  sEASY;
+    
+    
+    
     
     /**
-     * private validate
+     * private function validate
      * validates the given type
      * @param String sType
      * @return Boolean
      */
     function validate(sType) {
-        return (typeof sType == 'string' && ( sEasy === sType || sMedium === sType || sHard === sType ));
+        return (typeof sType == 'string' && ( sEASY == sType.toUpperCase() || sMEDIUM == sType.toUpperCase() || sHARD == sType.toUpperCase() ));
     }
     
-    /** set difficulty type */
-    this.sType = (validate(sType)? sType : sDefault);
+    
+    
+    
+    /** set public difficulty type */
+    this.sType = (validate(sType)? sType.toUpperCase() : sDEFAULT);
+    
 }
-
-//myDiff = new Difficulty(123456);
-//console.log(myDiff);
