@@ -7,4 +7,5 @@ The team determined the following conventions for this project:
  * the jQuery framework (http://jquery.com) is used for simplified and unified
    access to the DOM and other common utilities
  * unit tests are based on the QUnit framework (http://docs.jquery.com/Qunit)
- * Doxygen as documentation tool http://www.doxygen.org/helpers.html
+ * documentation is generated using Doxygen (http://doxygen.org)
+
