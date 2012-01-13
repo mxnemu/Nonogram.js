@@ -1,0 +1,63 @@
+/*----------------------------------------------------------------------
+ * 
+ * defaults
+ * 
+ *--------------------------------------------------------------------*/
+
+h1 {
+    font-size:                                          400%;
+}
+
+/*----------------------------------------------------------------------
+ * 
+ * template
+ * 
+ *--------------------------------------------------------------------*/
+
+#center {
+    position:                                           relative;
+    margin:                                             0 auto;
+    width:                                              90%;
+    height:                                             100%;
+    background-color:                                   grey;
+}
+
+    #doc {
+        position:                                       relative;
+        height:                                         100%;
+        width:                                          100%;
+    }
+    
+        #header {
+            height:                                     10%;
+            min-height:                                 50px;                
+            background-color:                           pink;
+        }
+        
+        #game {
+            position:                                   relative;
+            height:                                     85%;
+            overflow:                                   hidden;
+        }
+        
+            #playground {
+                position:                               relative;
+                float:                                  left;
+                width:                                  80%;
+                height:                                 100%;
+                background-color:                       yellow;
+            }
+            
+            #controlls {
+                position:                               relative;
+                float:                                  left;
+                width:                                  20%;
+                height:                                 100%;
+                background-color:                       green;
+            }
+        
+        #footer {
+            height:                                     5%;
+            min-height:                                 20px;
+            background-color:                           red;
+        }
