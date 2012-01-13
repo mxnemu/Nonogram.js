@@ -12,32 +12,9 @@ function Board(iWidth, iHeight) {
 
 
 
-/**
- * 
- */
-Board.prototype.createNodes = function () {
-    
-};
-
-
-
-
-/**
- * 
- */
-Board.prototype.updateNodes = function () {
-    
-};
-
-
-
-
-/**
- * 
- */
-Board.prototype.removeNodes = function () {
-    
-};
-
+//TODO: check if we need to implement the following methods, because they're allready implemented in Widget.
+//      createNodes();
+//      updateNodes();
+//      removeNodes();
 
 

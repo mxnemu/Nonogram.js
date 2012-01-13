@@ -4,6 +4,7 @@
  * @ctor
  * Constructor.
  * Either take 2 Numbers for dimensions or one Snapshot to copy
+ * see: blog.dezfowler.com/2008/08/function-overloading-in-javascript.html
  */
 function Snapshot(arg1, arg2) {
     if (typeof(arg1) == "number" && typeof(arg1) == "number") {
@@ -20,6 +21,8 @@ function Snapshot(arg1, arg2) {
         this.cells = null;
     }
 }
+
+
 
 /**
  * @treturn boolean return true if cells are equally set
