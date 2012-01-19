@@ -36,8 +36,33 @@ Snapshot.prototype.isEqual = function(otherSnapshot) {
 /**
  * @treturn boolean return true if the required cells are marked as sure
  */
-Snapshot.prototype.isValid = function(solutionSnapshot) {
-    return this.cells == solutionSnapshot.cells;
+Snapshot.prototype.isValid = function(solutionSnapshot, changeX, changeY) {
+    var valid = true,
+		solution = window.APP.oGame.solution,
+		lineX, lineY;
+	
+	createLines(changeX, changeY);
+	valid = lineIsValid(lineX);
+	valid = lineIsValid(lineY);
+	
+	return valid;	
+	
+	function createLines (changeX, changeY) {
+		var x, y;
+		
+		lineX = [];
+		lineY = [];
+		for (y = 0; y < this.height; y += 1) {
+			lineX.push(this.get(changeX, y));
+		}
+		for (x = 0; x < this.width; x += 1) {
+			lineY.push(this.get(changeY, x));
+		}
+	}
+
+	function lineIsValid (line) {
+		
+	}
 };
 
 /**
