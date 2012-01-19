@@ -2,33 +2,17 @@
  * Application constructor
  */
 function Application() {
-    /** for tests only, remove this! */
-    var oBoard = new Board(10, 10);
-    $('#playground').append(oBoard.createNodes());
+    this.storage = new Storage();
+    this.board = new Board(10, 10); // TODO: Initialize with Game or Editor objects.
+    $('#playground').append(this.board.createNodes());
 }
 
-
-
-
-/**
- * Saves a game under a name.
- *
- * @param String sName game name
- * @param Object oGame game object
- */
-Application.prototype.save = function (sName, oGame) {
-    
+Application.prototype.save = function (name, board) {
+    window.localStorage.setItem(name, JSON.stringify(board.serialize()));
 };
 
-
-
-
-/**
- * Returns a game by name.
- *
- * @param String sName game name
- * @return Object game object
- */
-Application.prototype.load = function (sName) {
-
+Application.prototype.load = function (name) {
+    var serialized = window.localStorage.getItem(name);
+    if (!serialized) throw "Could not load `" + name + "'.";
+    this.board.restore(serialized);
 };

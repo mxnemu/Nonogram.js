@@ -87,5 +87,19 @@ Board.prototype.removeNodes = function () {
     this.node = null;
 };
 
+Board.prototype.serialize = function () {
+    return {
+        width:   this.iWidth,
+        height:  this.iHeight,
+        history: this.history.serialize()
+    };
+};
+
+Board.prototype.restore = function (serialized) {
+    this.iWidth = serialized.width;
+    this.iHeight = serialized.height;
+    this.history.restore(serialized.history);
+};
+
 Board.prototype.onClick = function (x, y) {};
 Board.prototype.onRightClick = function (x, y) {};
