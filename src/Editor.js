@@ -1,10 +1,11 @@
 /**
  * Editor constructor
  */
-function Editor() {}
+function Editor(iWidth, iHeight) {
+    Board.call(this, iWidth, iHeight); // parent constructor
+}
 
-
-
+Editor.prototype = new Board(); // inherit
 
 /**
  * Saves a solution snapshot under a name.
@@ -13,11 +14,8 @@ function Editor() {}
  * @param String sName game name
  */
 Editor.prototype.save = function (oSolution, sName) {
-    
+    // TODO
 };
-
-
-
 
 /**
  * load a solution snapshot under a name.
@@ -26,10 +24,5 @@ Editor.prototype.save = function (oSolution, sName) {
  * @return Object solution snapshot
  */
 Editor.prototype.load = function (sName) {
-    
+    // TODO
 };
-
-//TODO: check if we need to implement the following methods, because they're allready implemented in Widget.
-//      createNodes();
-//      updateNodes();
-//      removeNodes();

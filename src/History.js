@@ -5,13 +5,17 @@
  * creates Empy arrays
  */
 function History() {
+    Widget.call(this); // parent constructor
+
     this.snapshots = new Array();
     this.currentOffset = 0;
     this.trackNodes = new Array();
-    
+
 //TODO not sure if solution is required in this class. It's in the UML.
 //    this.solution = null;
 }
+
+History.prototype = new Widget(); // inherit
 
 /**
  * Set the currentOffset if the given value is a valid index in this.snapshots

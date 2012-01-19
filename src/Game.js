@@ -1,18 +1,17 @@
 /**
  * Game constructor
- * 
+ *
  * @param Object oDifficulty game difficulty
  * @param Object oHistory game history
  * @param Object oSolution game solution snapshot
  */
 function Game(oDifficulty, oHistory, oSolution) {
+    // TODO: Insert real width and height.
+    Board.call(this, 0, 0); // parent constructor
+
     this.oDifficulty = oDifficulty;
     this.oHistory = oHistory;
     this.oSolution = oSolution;
 }
 
-//TODO: check if we need to implement the following methods, because they're allready implemented in Widget.
-//      createNodes();
-//      updateNodes();
-//      removeNodes();
-
+Game.prototype = new Board(); // inherit
