@@ -1,7 +1,11 @@
 /**
  * Application constructor
  */
-function Application() {}
+function Application() {
+    /** for tests only, remove this! */
+    var oBoard = new Board(10, 10);
+    $('#playground').append(oBoard.createNodes());
+}
 
 
 
