@@ -5,7 +5,6 @@
  * creates Empy arrays
  */
 function History() {
-    Widget.call(this); // parent constructor
 
     this.snapshots = new Array();
     this.currentOffset = -1;
@@ -14,8 +13,6 @@ function History() {
 //TODO not sure if solution is required in this class. It's in the UML.
 //    this.solution = null;
 }
-
-History.prototype = new Widget(); // inherit
 
 /**
  * Set the currentOffset if the given value is a valid index in this.snapshots
@@ -69,25 +66,5 @@ History.prototype.rollback = function(trackNodeName) {
     var offset = this.trackNodes[trackNodeName];
     if (offset != undefined) {
         jumpTo(offset);
-    }
-}
-
-/**
- *  create the DOM-Nodes for the current Snapshot
- */
-History.prototype.createNodes = function() {
-    var current = this.getCurrent();
-    if (current) {
-        current.createNodes();
-    }
-}
-
-/**
- *  remove the DOM-Nodes for the current Snapshot from this document
- */
-History.prototype.removeNodes = function() {
-    var current = this.getCurrent();
-    if (current) {
-        current.removeNodes();
     }
 }
