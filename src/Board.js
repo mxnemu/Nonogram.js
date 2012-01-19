@@ -17,7 +17,8 @@ function Board(iWidth, iHeight) {
 Board.prototype = new Widget(); // inherit
 
 Board.prototype.createNodes = function () {
-    var r, // row (<tr>)
+    var _this = this,
+        r, // row (<tr>)
         c, // column (<td>)
         x,
         y;
@@ -31,13 +32,22 @@ Board.prototype.createNodes = function () {
     for (y = 0; y < this.iWidth; ++y) {
         r = $('<tr/>');
 
-        for (x = 0; x < this.iHeight; ++x) {
+        for (x = 0; x < this.iHeight; ++x) (function (x, y) { // bind x and y
+            // Create the cell.
             c = $('<td/>').addClass('cell');
-            c.data('x', x).data('y', y);
 
+            // Bind the cell.
+            c.click(function () {
+                _this.onClick(x, y);
+            });
+            c.bind('contextmenu', function () {
+                _this.onRightClick(x, y);
+            });
+
+            // Store the cell.
             this.cellNodes[y * this.iWidth + x] = c;
             c.appendTo(r);
-        }
+        }(x, y));
 
         r.appendTo(this.node);
     }
@@ -74,3 +84,6 @@ Board.prototype.removeNodes = function () {
     this.node.remove();
     this.node = null;
 };
+
+Board.prototype.onClick = function (x, y) {};
+Board.prototype.onRightClick = function (x, y) {};
