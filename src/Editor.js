@@ -14,9 +14,9 @@ Editor.prototype = new Board(); // inherit
  * @tparam Object oSolution solution snapshot
  * @tparam String sName game name
  */
-Editor.prototype.save = function (oSolution, sName) {
-    localStorage.setItem("game-" + sName, JSON.stringify(oSolution.cells));
-};
+//Editor.prototype.save = function (oSolution, sName) {
+//    localStorage.setItem("game-" + sName, JSON.stringify(oSolution.cells));
+//};
 
 /**
  * load a solution snapshot under a name.
@@ -24,11 +24,11 @@ Editor.prototype.save = function (oSolution, sName) {
  * @tparam String sName game name
  * @treturn Object solution snapshot
  */
-Editor.prototype.load = function (sName) {
-    return Board.prototype.load.call(this, sName);
+//Editor.prototype.load = function (sName) {
+//    return Board.prototype.load.call(this, sName);
     //var sSolutionSnapshot = localStorage.getItem("game-" + sName);
     //return JSON.parse(sSolutionSnapshot);
-};
+//};
 
 /**
  * creates the dom nodes for the option panel
@@ -62,16 +62,12 @@ Editor.prototype.createOptionNode = function() {
  * onClick
  */
 Editor.prototype.onClick = function(x, y) {
-    var status;
-    status = this.getCellStatus(x, y);
-    this.setCellStatus(x, y, status == 1? 2 : 1);
+    this.setCellStatus(x, y, this.getCellStatus(x, y) == CellStatus.ACTIVE? CellStatus.INACTIVE : CellStatus.ACTIVE);
 }
 
 /**
  * onRightClick
  */
 Editor.prototype.onRightClick = function(x, y) {
-    var status;
-    status = this.getCellStatus(x, y);
-    this.setCellStatus(x, y, status == 1? 2 : 1);
+    this.onClick(x, y);
 }
