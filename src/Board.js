@@ -37,10 +37,12 @@ Board.prototype.createNodes = function () {
             c = $('<td/>').addClass('cell');
 
             // Bind the cell.
-            c.click(function () {
+            c.click(function (e) {
+                e.preventDefault();
                 _this.onClick(x, y);
             });
-            c.bind('contextmenu', function () {
+            c.bind('contextmenu', function (e) {
+                e.preventDefault();
                 _this.onRightClick(x, y);
             });
 
