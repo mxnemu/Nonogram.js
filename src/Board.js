@@ -15,18 +15,22 @@ function Board(iWidth, iHeight) {
 Board.prototype = new Widget(); // inherit
 
 Board.prototype.createNodes = function () {
-    var r, c, x, y;
+    var r, // row (<tr>)
+        c, // column (<td>)
+        x,
+        y;
 
-    this.node = $('<table/>');
+    this.node = $('<table/>').addClass('board');
 
     for (y = 0; y < this.iWidth; ++y) {
         r = $('<tr/>');
 
         for (x = 0; x < this.iHeight; ++x) {
-            c = $('<td/>').text((x + 1) + 'x' + (y + 1)).appendTo(r);
+            c = $('<td/>').text((x + 1) + 'x' + (y + 1));
+            c.appendTo(r);
         }
 
-        r.appendTo(t);
+        r.appendTo(this.node);
     }
 
     return this.node;
