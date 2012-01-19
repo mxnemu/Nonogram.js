@@ -83,16 +83,6 @@ History.prototype.createNodes = function() {
 }
 
 /**
- *  update the DOM-Nodes for the current Snapshot
- */
-History.prototype.updateNodes = function() {
-    var current = this.getCurrent();
-    if (current) {
-        current.updateNodes();
-    }
-}
-
-/**
  *  remove the DOM-Nodes for the current Snapshot from this document
  */
 History.prototype.removeNodes = function() {
