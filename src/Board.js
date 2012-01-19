@@ -16,14 +16,14 @@ function Board(iWidth, iHeight) {
 Board.prototype = new Widget(); // inherit
 
 Board.prototype.createNodes = function () {
+    this.oHistory.add(new Snapshot(this.iWidth, this.iHeight));
+    this.cellNodes = new Array(this.iWidth*this.iHeight);
+
     var r, // row (<tr>)
         c, // column (<td>)
         x,
         y;
         
-    this.oHistory.add(new Snapshot(this.iWidth, this.iHeight));
-    this.cellNodes = new Array(this.iWidth*this.iHeight);
-
     // Create the nodes.
     this.node = $('<table/>').addClass('board');
 
