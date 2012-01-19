@@ -10,8 +10,7 @@ function Board(iWidth, iHeight) {
     this.iWidth = iWidth;
     this.iHeight = iHeight;
     this.node = null;
-    this.cellNodes = [];
-    this.cellStatuses = [];
+    this.oHistory = new History();
 }
 
 Board.prototype = new Widget(); // inherit
@@ -21,6 +20,9 @@ Board.prototype.createNodes = function () {
         c, // column (<td>)
         x,
         y;
+        
+    this.oHistory.add(new Snapshot(this.iWidth, this.iHeight));
+    this.cellNodes = new Array(this.iWidth*this.iHeight);
 
     // Create the nodes.
     this.node = $('<table/>').addClass('board');
@@ -50,20 +52,22 @@ Board.prototype.createNodes = function () {
 };
 
 Board.prototype.getCellStatuses = function () {
-    return this.cellStatuses.slice(0); // copy
+    return this.oHistory.getCurrent().getCells.slice(0);
 };
 
 Board.prototype.getCellStatus = function (x, y) {
-    return this.cellStatuses[y * this.iWidth + x] || CellStatus.INVALID;
+    return this.oHistory.getCurrent().get(x,y) || CellStatus.INVALID; // [y * this.iWidth + x]
 };
 
 Board.prototype.setCellStatus = function (x, y, newStatus) {
+    var oNewSnapshot = new Snapshot(this.oHistory.getCurrent());
     var cellNode = this.cellNodes[y * this.iWidth + x],
         currentStatus = this.getCellStatus(x, y);
 
     cellNode.removeClass(CellStatus.toClass(currentStatus));
     cellNode.addClass(CellStatus.toClass(newStatus));
-    this.cellStatuses[y * this.iWidth + x] = newStatus;
+    oNewSnapshot.set(x, y, newStatus); // [y * this.iWidth + x]
+    this.oHistory.add(oNewSnapshot);
 };
 
 Board.prototype.removeNodes = function () {
