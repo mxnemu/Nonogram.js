@@ -37,10 +37,12 @@ Board.prototype.createNodes = function () {
             c = $('<td/>').addClass('cell');
 
             // Bind the cell.
-            c.click(function () {
+            c.click(function (e) {
+                e.preventDefault();
                 _this.onClick(x, y);
             });
-            c.bind('contextmenu', function () {
+            c.bind('contextmenu', function (e) {
+                e.preventDefault();
                 _this.onRightClick(x, y);
             });
 
@@ -83,6 +85,20 @@ Board.prototype.setCellStatus = function (x, y, newStatus) {
 Board.prototype.removeNodes = function () {
     this.node.remove();
     this.node = null;
+};
+
+Board.prototype.serialize = function () {
+    return {
+        width:   this.iWidth,
+        height:  this.iHeight,
+        history: this.history.serialize()
+    };
+};
+
+Board.prototype.restore = function (serialized) {
+    this.iWidth = serialized.width;
+    this.iHeight = serialized.height;
+    this.history.restore(serialized.history);
 };
 
 Board.prototype.onClick = function (x, y) {};
