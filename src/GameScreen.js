@@ -1,0 +1,4 @@
+/**
+ * GameScreen constructor
+ */
+function GameScreen() {}

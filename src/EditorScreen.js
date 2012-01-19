@@ -1,0 +1,4 @@
+/**
+ * EditorScreen constructor
+ */
+function EditorScreen() {}
