@@ -6,7 +6,7 @@ function Editor(iWidth, iHeight) {
     this.optionNode = null;
 }
 
-Editor.prototype = new Board(10, 10); // inherit
+Editor.prototype = new Board(); // inherit
 
 /**
  * Saves a solution snapshot under a name.
@@ -37,6 +37,7 @@ Editor.prototype.createOptionNode = function() {
     var _this = this;
     this.optionNode = $(
           '<div class="option-node" id="option-node-editor">'
+            + '<h2>EDITOR</h2>'
             + '<input name="editor-gamename" type="text" />'
             + '<input name="editor-load" type="button" value="load" />'
             + '<input name="editor-save" type="button" value="save" />'
