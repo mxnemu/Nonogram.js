@@ -8,7 +8,7 @@ function History() {
     Widget.call(this); // parent constructor
 
     this.snapshots = new Array();
-    this.currentOffset = 0;
+    this.currentOffset = -1;
     this.trackNodes = new Array();
 
 //TODO not sure if solution is required in this class. It's in the UML.
