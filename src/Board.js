@@ -1,8 +1,8 @@
 /**
  * Board constructor
  *
- * @param Integer iWidth board width
- * @param Integer iHeight board height
+ * @tparm Integer iWidth board width
+ * @tparm Integer iHeight board height
  */
 function Board(iWidth, iHeight) {
     Widget.call(this); // parent constructor
@@ -10,21 +10,22 @@ function Board(iWidth, iHeight) {
     this.iWidth = iWidth;
     this.iHeight = iHeight;
     this.node = null;
-    this.oHistory = new History();
+    this.cellNodes = null;
+    this.history = new History();
 }
 
 Board.prototype = new Widget(); // inherit
 
 Board.prototype.createNodes = function () {
-    this.oHistory.add(new Snapshot(this.iWidth, this.iHeight));
-    this.cellNodes = new Array(this.iWidth*this.iHeight);
-
     var r, // row (<tr>)
         c, // column (<td>)
         x,
         y;
-        
+
+    this.history.add(new Snapshot(this.iWidth, this.iHeight));
+
     // Create the nodes.
+    this.cellNodes = [];
     this.node = $('<table/>').addClass('board');
 
     for (y = 0; y < this.iWidth; ++y) {
@@ -51,23 +52,22 @@ Board.prototype.createNodes = function () {
     return this.node;
 };
 
-Board.prototype.getCellStatuses = function () {
-    return this.oHistory.getCurrent().getCells.slice(0);
-};
-
 Board.prototype.getCellStatus = function (x, y) {
-    return this.oHistory.getCurrent().get(x,y) || CellStatus.INVALID; // [y * this.iWidth + x]
+    return this.history.getCurrent().get(x, y) || CellStatus.INVALID;
 };
 
 Board.prototype.setCellStatus = function (x, y, newStatus) {
-    var oNewSnapshot = new Snapshot(this.oHistory.getCurrent());
-    var cellNode = this.cellNodes[y * this.iWidth + x],
+    var newSnapshot = new Snapshot(this.history.getCurrent()),
+        cellNode = this.cellNodes[y * this.iWidth + x],
         currentStatus = this.getCellStatus(x, y);
 
+    // Update nodes.
     cellNode.removeClass(CellStatus.toClass(currentStatus));
     cellNode.addClass(CellStatus.toClass(newStatus));
-    oNewSnapshot.set(x, y, newStatus); // [y * this.iWidth + x]
-    this.oHistory.add(oNewSnapshot);
+
+    // Update history.
+    newSnapshot.set(x, y, newStatus);
+    this.history.add(newSnapshot);
 };
 
 Board.prototype.removeNodes = function () {
