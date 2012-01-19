@@ -6,7 +6,7 @@ function Editor(iWidth, iHeight) {
     this.optionNode = null;
 }
 
-Editor.prototype = new Board(); // inherit
+Editor.prototype = new Board(10, 10); // inherit
 
 /**
  * Saves a solution snapshot under a name.
@@ -33,7 +33,7 @@ Editor.prototype.load = function (sName) {
 /**
  * creates the dom nodes for the option panel
  */
-Editor.prototype.createOptions = function() {
+Editor.prototype.createOptionNode = function() {
     var _this = this;
     this.optionNode = $(
           '<div class="option-node" id="option-node-editor">'
