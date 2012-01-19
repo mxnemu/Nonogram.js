@@ -39,6 +39,9 @@ History.prototype.getCurrent = function() {
  */
 History.prototype.add = function(snapshot) {
     if (snapshot) {
+        if (this.currentOffset < this.snapshots.length - 1) {
+            this.snapshots = this.snapshots.slice(0, currentOffset);
+        }
         this.snapshots.push(snapshot);
         this.currentOffset++;
     }
