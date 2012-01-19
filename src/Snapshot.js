@@ -1,83 +1,52 @@
 /**
- * The Snapshot stores the status of all cells on a board.
- * It represents the board at a specific turn.
+ * The Snapshot stores the status of all cells on a board. It represents the
+ * board at a specific moment in time.
+ *
  * @ctor
- * Constructor.
- * Either take 2 Numbers for dimensions or one Snapshot to copy
- * see: blog.dezfowler.com/2008/08/function-overloading-in-javascript.html
  */
-function Snapshot(arg1, arg2) {
-    Widget.call(this); // parent constructor
+function Snapshot() {
+    var args = Array.prototype.slice.call(arguments),
+        x,
+        y;
 
-    if (typeof(arg1) == "number" && typeof(arg1) == "number") {
-        var width  = arg1;
-        var height = arg2;
-        // create 2 dimensional array
-        this.cells = new Array(height);
-        for (var y=0; y < height; ++y) {
-            this.cells[y] = new Array(width);
+    if (args.length == 2 && $.isNumeric(args[0]) && $.isNumeric(args[1])) {
+        // Handle regular construction (dimensions).
+        this.width = args[0];
+        this.height = args[1];
+        this.cells = [];
+
+        // Initialize all cells.
+        for (y = 0; y < this.width; ++y) {
+            for (x = 0; x < this.height; ++x) {
+                this.cells[y * this.width + x] = CellStatus.INVALID;
+            }
         }
-    } else if (typeof(arg1) == "object") {
-        this.cells = arg1.cells;
-    } else {
-        this.cells = null;
+    } else if (args.length == 1 && args[0] instanceof Snapshot) {
+        // Copy all relevant values.
+        this.width = args[0].width;
+        this.height = args[0].height;
+        this.cells = args[0].cells.slice(0);
     }
 }
 
-Snapshot.prototype = new Widget(); // inherit
+Snapshot.prototype.isEqual = function (other) {
+    if (this.width != other.width || this.height != other.height) return false;
 
-/**
- * @treturn boolean return true if cells are equally set
- */
-Snapshot.prototype.isEqual = function(otherSnapshot) {
-    return otherSnapshot.cells == this.cells;
+    for (var i = 0; i < this.width * this.height; ++i) {
+        if (this.cells[i] != other.cells[i]) return false;
+    }
+
+    return true;
 };
 
-/**
- * @treturn boolean return true if the required cells are marked as sure
- */
 Snapshot.prototype.isValid = function(solutionSnapshot) {
     return this.cells == solutionSnapshot.cells;
 };
 
-/**
- * @tparm Number x Either take x coord or and id, than y mus be 0
- * @tparm Number y y coord of the cell set to null if you want to use x as id
- *  set the status of the cell for the given coords
- */
 Snapshot.prototype.set = function(x, y, status) {
-    if (y == null) {
-        var id = x;
-        y = id % this.cells.length;
-        x = id - y;
-    }
-    return this.cells[y][x] = status;
+    this.cells[y * this.width + x] = status;
 };
 
-/**
- * @tparm Number x Either take x coord or and id, than y mus be 0
- * @tparm Number y y coord of the cell set to null if you want to use x as id
- * @treturn CellStatus at the given coords
- */
 Snapshot.prototype.get = function(x, y) {
-    if (y == null) {
-        var id = x;
-        y = id % this.cells.length;
-        x = id - y;
-    }
-    return this.cells[y][x];
-};
-
-/**
- *  create the DOM-Nodes for this Snapshot
- */
-Snapshot.prototype.createNodes = function() {
-
-};
-
-/**
- *  remove the DOM-Nodes for this Snapshot from this document
- */
-Snapshot.prototype.removeNodes = function() {
-
+    return this.cells[y * this.width + x] || CellStatus.INVALID;
 };
