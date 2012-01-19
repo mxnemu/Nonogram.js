@@ -1,17 +1,17 @@
 /**
- * Editor constructor
+ * EditorBoard constructor
  */
-function Editor(iWidth, iHeight) {
+function EditorBoard(iWidth, iHeight) {
     Board.call(this, iWidth, iHeight); // parent constructor
     this.optionNode = null;
 }
 
-Editor.prototype = new Board(); // inherit
+EditorBoard.prototype = new Board(); // inherit
 
 /**
  * creates the dom nodes for the option panel
  */
-Editor.prototype.createOptionNode = function() {
+/*Editor.prototype.createOptionNode = function() {
     var _this = this;
     this.optionNode = $(
           '<div class="option-node" id="option-node-editor">'
@@ -28,28 +28,24 @@ Editor.prototype.createOptionNode = function() {
 
     this.optionNode.find('input[name="editor-save"]').click(function() {
         _this.save(
-            _this.history.getCurrent()
-            , _this.optionNode.find('input[name="editor-gamename"]')
+            _this.optionNode.find('input[name="editor-gamename"]')
+            , _this
         );
     });
 
     return this.optionNode;
-}
+}*/
 
 /**
  * onClick
  */
-Editor.prototype.onClick = function(x, y) {
-    var status;
-    status = this.getCellStatus(x, y);
-    this.setCellStatus(x, y, status == 1? 2 : 1);
+EditorBoard.prototype.onClick = function(x, y) {
+    this.setCellStatus(x, y, this.getCellStatus(x, y) == CellStatus.ACTIVE? CellStatus.INACTIVE : CellStatus.ACTIVE);
 }
 
 /**
  * onRightClick
  */
-Editor.prototype.onRightClick = function(x, y) {
-    var status;
-    status = this.getCellStatus(x, y);
-    this.setCellStatus(x, y, status == 1? 2 : 1);
+EditorBoard.prototype.onRightClick = function(x, y) {
+    this.onClick(x, y);
 }

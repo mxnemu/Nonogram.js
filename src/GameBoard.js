@@ -1,11 +1,11 @@
 /**
- * Game constructor
+ * GameBoard constructor
  *
  * @param Object oDifficulty game difficulty
  * @param Object oHistory game history
  * @param Object oSolution game solution snapshot
  */
-function Game(oDifficulty, oHistory, oSolution) {
+function GameBoard(oDifficulty, oHistory, oSolution) {
     // TODO: Insert real width and height.
     Board.call(this, 0, 0); // parent constructor
 
@@ -14,4 +14,4 @@ function Game(oDifficulty, oHistory, oSolution) {
     this.oSolution = oSolution;
 }
 
-Game.prototype = new Board(); // inherit
+GameBoard.prototype = new Board(); // inherit
