@@ -45,7 +45,7 @@ Board.prototype.createNodes = function () {
             });
 
             // Store the cell.
-            this.cellNodes[y * this.iWidth + x] = c;
+            _this.cellNodes[y * _this.iWidth + x] = c;
             c.appendTo(r);
         }(x, y));
 
