@@ -41,9 +41,16 @@ Snapshot.prototype.isValid = function(solutionSnapshot) {
 };
 
 /**
+ * @tparm Number x Either take x coord or and id, than y mus be 0
+ * @tparm Number y y coord of the cell set to null if you want to use x as id
  *  set the status of the cell for the given coords
  */
 Snapshot.prototype.set = function(x, y, status) {
+    if (y == null) {
+        var id = x;
+        y = id % this.cells.length;
+        x = id - y;
+    }
     return this.cells[y][x] = status;
 };
 
