@@ -65,10 +65,6 @@ Board.prototype.setCellStatus = function (x, y, newStatus) {
     cellNode.data('status', newStatus);
 };
 
-Board.prototype.updateNodes = function () {
-    // TODO
-};
-
 Board.prototype.removeNodes = function () {
     this.node.remove();
     this.node = null;

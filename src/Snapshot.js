@@ -76,13 +76,6 @@ Snapshot.prototype.createNodes = function() {
 };
 
 /**
- *  update the DOM-Nodes for this Snapshot
- */
-Snapshot.prototype.updateNodes = function() {
-
-};
-
-/**
  *  remove the DOM-Nodes for this Snapshot from this document
  */
 Snapshot.prototype.removeNodes = function() {
