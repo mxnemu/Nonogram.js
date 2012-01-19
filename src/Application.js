@@ -6,8 +6,8 @@ function Application() {
     $('#playground').append(this.board.createNodes());
 }
 
-Application.prototype.save = function (name, board) {
-    window.localStorage.setItem(name, JSON.stringify(board.serialize()));
+Application.prototype.save = function (name) {
+    window.localStorage.setItem(name, JSON.stringify(this.board.serialize()));
 };
 
 Application.prototype.load = function (name) {
