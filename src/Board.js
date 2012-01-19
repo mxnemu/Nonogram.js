@@ -10,6 +10,7 @@ function Board(iWidth, iHeight) {
     this.iWidth = iWidth;
     this.iHeight = iHeight;
     this.node = null;
+    this.cellNodes = [];
 }
 
 Board.prototype = new Widget(); // inherit
@@ -28,10 +29,9 @@ Board.prototype.createNodes = function () {
 
         for (x = 0; x < this.iHeight; ++x) {
             c = $('<td/>').addClass('cell');
-
-            c.attr('id', 'cell-x' + x + '-y' + y);
             c.data('x', x).data('y', y);
 
+            this.cellNodes[y * this.iWidth + x] = c;
             c.appendTo(r);
         }
 
@@ -49,11 +49,11 @@ Board.prototype.createNodes = function () {
 };
 
 Board.prototype.getCellNode = function (x, y) {
-    return $('#cell-x' + x + '-y' + y, this.node);
+    return this.cellNodes[y * this.iWidth + x];
 };
 
 Board.prototype.getCellStatus = function (x, y) {
-    return parseInt(this.getCellNode().data('status'), 10);
+    return this.getCellNode().data('status') || CellStatus.INVALID;
 };
 
 Board.prototype.setCellStatus = function (x, y, newStatus) {
