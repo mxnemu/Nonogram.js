@@ -2,7 +2,6 @@
  * Application constructor
  */
 function Application() {
-    this.storage = new Storage();
     this.board = new Board(10, 10); // TODO: Initialize with Game or Editor objects.
     $('#playground').append(this.board.createNodes());
 }
