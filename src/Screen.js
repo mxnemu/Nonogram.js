@@ -4,7 +4,7 @@ function Screen(board) {
 }
 
 Screen.prototype.redraw = function () {
-    if (this.board === null) {
+    if (this.board !== null) {
         this.board.removeNodes();
         $('#playground').append(this.board.createNodes());
     }
