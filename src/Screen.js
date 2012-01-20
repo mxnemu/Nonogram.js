@@ -1,5 +1,6 @@
 function Screen(board) {
     this.board = board || null;
+    this.optionNode = null;
     this.redraw();
 }
 
