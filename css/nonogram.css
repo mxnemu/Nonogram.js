@@ -12,9 +12,26 @@
     width: 20px;
     height: 20px;
 }
+.board .cell.cell-status-0 { /* invalid */
+    background-color: red;
+}
 .board .cell.cell-status-1 { /* active */
     background-color: black;
 }
 .board .cell.cell-status-2 { /* inactive */
     background-color: white;
+}
+
+.board .label-container.horizontal {
+    padding: 10px 0px;
+}
+.board .label-container.vertical {
+    padding: 0px 10px;
+}
+.board .label-container .label {
+    float: left;
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    background-color: gray;
 }

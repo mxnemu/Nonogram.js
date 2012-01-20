@@ -1,8 +1,17 @@
 /*----------------------------------------------------------------------
- * 
+ *
  * defaults
- * 
+ *
  *--------------------------------------------------------------------*/
+
+.clearfix:after {
+    content: ".";
+    display: block;
+    clear: both;
+    visibility: hidden;
+    line-height: 0;
+    height: 0;
+}
 
 h1 {
     font-size:                                          400%;
@@ -15,9 +24,9 @@ h2 {
 }
 
 /*----------------------------------------------------------------------
- * 
+ *
  * template
- * 
+ *
  *--------------------------------------------------------------------*/
 
 #center {
@@ -32,18 +41,18 @@ h2 {
         height:                                         100%;
         width:                                          100%;
     }
-    
+
         #header {
             height:                                     10%;
             min-height:                                 50px;
         }
-        
+
         #game {
             position:                                   relative;
             height:                                     85%;
             overflow:                                   hidden;
         }
-        
+
             #playground {
                 position:                               relative;
                 float:                                  left;
@@ -51,7 +60,7 @@ h2 {
                 height:                                 100%;
                 background-color:                       yellow;
             }
-            
+
             #controlls {
                 position:                               relative;
                 float:                                  left;
@@ -59,7 +68,7 @@ h2 {
                 height:                                 100%;
                 background-color:                       green;
             }
-        
+
         #footer {
             height:                                     5%;
             min-height:                                 20px;
