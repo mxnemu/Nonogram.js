@@ -4,17 +4,22 @@
  * @tparm Integer iWidth board width
  * @tparm Integer iHeight board height
  */
-function Board(iWidth, iHeight) {
+function Board(iWidth, iHeight, defaultCellStatus) {
     Widget.call(this); // parent constructor
 
     this.iWidth = iWidth;
     this.iHeight = iHeight;
+    this.defaultCellStatus = defaultCellStatus || CellStatus.INVALID;
     this.node = null;
     this.cellNodes = [];
     this.horizontalLabelContainers = [];
     this.verticalLabelContainers = [];
     this.solution = null;
     this.history = new History();
+
+    if (arguments.length > 0) {
+        this.history.add(new Snapshot(this.iWidth, this.iHeight, this.defaultCellStatus));
+    }
 }
 
 Board.prototype = new Widget(); // inherit
@@ -30,8 +35,6 @@ Board.prototype.createNodes = function () {
         y,
         cw,
         ch;
-
-    this.history.add(new Snapshot(this.iWidth, this.iHeight));
 
     // Create the nodes.
     this.node = $('<table/>').addClass('board');

@@ -2,7 +2,7 @@
  * EditorBoard constructor
  */
 function EditorBoard(iWidth, iHeight) {
-    Board.call(this, iWidth, iHeight); // parent constructor
+    Board.call(this, iWidth, iHeight, CellStatus.INACTIVE); // parent constructor
 }
 
 EditorBoard.prototype = new Board(); // inherit
@@ -14,9 +14,10 @@ EditorBoard.prototype.setCellStatus = function () {
     this.setSolution(this.history.getCurrent());
 };
 
-/**
- * onClick
- */
 EditorBoard.prototype.onClick = function(x, y) {
-    this.setCellStatus(x, y, this.getCellStatus(x, y) == CellStatus.ACTIVE? CellStatus.INACTIVE : CellStatus.ACTIVE, true);
+    this.setCellStatus(x, y, CellStatus.ACTIVE, true);
+};
+
+EditorBoard.prototype.onRightClick = function(x, y) {
+    this.setCellStatus(x, y, CellStatus.INACTIVE, true);
 };

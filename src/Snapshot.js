@@ -9,7 +9,12 @@ function Snapshot() {
         x,
         y;
 
-    if (args.length == 2 && $.isNumeric(args[0]) && $.isNumeric(args[1])) {
+    if (args.length == 1 && args[0] instanceof Snapshot) {
+        // Copy all relevant values.
+        this.width = args[0].width;
+        this.height = args[0].height;
+        this.cells = args[0].cells.slice(0);
+    } else if (args.length >= 2 && $.isNumeric(args[0]) && $.isNumeric(args[1])) {
         // Handle regular construction (dimensions).
         this.width = args[0];
         this.height = args[1];
@@ -18,14 +23,9 @@ function Snapshot() {
         // Initialize all cells.
         for (y = 0; y < this.width; ++y) {
             for (x = 0; x < this.height; ++x) {
-                this.cells[y * this.width + x] = CellStatus.INACTIVE;
+                this.cells[y * this.width + x] = args[2] || CellStatus.INVALID;
             }
         }
-    } else if (args.length == 1 && args[0] instanceof Snapshot) {
-        // Copy all relevant values.
-        this.width = args[0].width;
-        this.height = args[0].height;
-        this.cells = args[0].cells.slice(0);
     }
 }
 

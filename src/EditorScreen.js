@@ -16,6 +16,19 @@ EditorScreen.prototype = new Screen(); // inherit
  */
 EditorScreen.prototype.createOptionNode = function() {
     var _this = this;
+
+    var sPresetNonograms = window.localStorage.getItem("presetNonograms");
+    if (!sPresetNonograms || sPresetNonograms == "") {
+        sPresetNonograms = "{}";
+    }
+    var aPresetNonograms = JSON.parse(sPresetNonograms);
+    
+    var sSelectBox = "<select size='5' name='editor-presetMapList' id='editor-presetMapList'>";
+    $.each(aPresetNonograms, function(key) {
+        sSelectBox += "<option>" + key + "</option>";
+    });
+    sSelectBox += "</select>";
+
     this.optionNode = $(
           '<div class="option-node" id="option-node-editor">'
             + '<h2>EDITOR</h2>'
@@ -36,13 +49,20 @@ EditorScreen.prototype.createOptionNode = function() {
             + '</fieldset>'
             + '<fieldset>'
                 + '<legend>Load</legend>'
-                + 'list goes here'
+                + sSelectBox
+                + '<input name="editor-load" type="button" value="load" />'
             + '</fieldset>'
         + '</div>'
     );
 
     this.optionNode.find('input[name="editor-save"]').click(function() {
         _this.save(_this.optionNode.find('input[name="editor-gamename"]').val(), _this);
+        _this.destroyOptionNode();
+        $('#controls').append(_this.createOptionNode());
+    });
+
+    this.optionNode.find('input[name="editor-load"]').click(function() {
+        _this.load(_this.optionNode.find('select[name="editor-presetMapList"]').val(), _this);
     });
 
     return this.optionNode;
@@ -54,7 +74,7 @@ EditorScreen.prototype.save = function (name) {
     if (!sPresetNonograms || sPresetNonograms == "") {
         sPresetNonograms = "{}";
     }
-    
+
     var aPresetNonograms = JSON.parse(sPresetNonograms);
     aPresetNonograms[name] = this.board.serialize();
     window.localStorage.setItem("presetNonograms", JSON.stringify(aPresetNonograms));
