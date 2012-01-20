@@ -27,7 +27,7 @@ GameBoard.prototype.fill = function () {
     if (!this.solution) return;
 
     for (y = 0; y < this.iHeight; ++y) {
-        for (x = 0; x < this.iHeight; ++x) {
+        for (x = 0; x < this.iWidth; ++x) {
             if (this.getCellStatus(x, y) == CellStatus.UNMARKED) {
                 this.setCellStatus(x, y, CellStatus.INACTIVE, true);
             }
