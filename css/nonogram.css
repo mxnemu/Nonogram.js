@@ -13,14 +13,14 @@
 .board .cell.cell-status-0 { /* invalid */
     background-color: red;
 }
-.board .cell.cell-status-1 { /* active */
+.board .cell.cell-status-1 { /* unmarked */
+    background-color: lightgray;
+}
+.board .cell.cell-status-2 { /* active */
     background-color: black;
 }
-.board .cell.cell-status-2 { /* inactive */
+.board .cell.cell-status-3 { /* inactive */
     background-color: white;
-}
-.board .cell.cell-status-3 { /* tagged */
-    background-color: lightgray;
 }
 
 .board .label-container {

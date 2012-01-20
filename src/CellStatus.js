@@ -3,9 +3,9 @@
  */
 var CellStatus = {
     INVALID:  0,
-    ACTIVE:   1,
-    INACTIVE: 2,
-    TAGGED:   3,
+    UNMARKED: 1,
+    ACTIVE:   2,
+    INACTIVE: 3,
 
     toClass: function (status) {
         return 'cell-status-' + status;

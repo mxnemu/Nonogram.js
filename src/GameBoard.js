@@ -6,7 +6,7 @@
  * @param Object oSolution game solution snapshot
  */
 function GameBoard(iWidth, iHeight, oDifficulty, oHistory, oSolution) {
-    Board.call(this, iWidth, iHeight); // parent constructor
+    Board.call(this, iWidth, iHeight, CellStatus.UNMARKED); // parent constructor
 
     this.oDifficulty = oDifficulty;
     this.oHistory = oHistory;
@@ -15,16 +15,10 @@ function GameBoard(iWidth, iHeight, oDifficulty, oHistory, oSolution) {
 
 GameBoard.prototype = new Board(); // inherit
 
-/**
- * onClick
- */
 GameBoard.prototype.onClick = function(x, y) {
     this.setCellStatus(x, y, this.getCellStatus(x, y) !== CellStatus.ACTIVE ? CellStatus.ACTIVE : CellStatus.INACTIVE, true);
 };
 
-/**
- * onRightClick
- */
 GameBoard.prototype.onRightClick = function(x, y) {
-    this.setCellStatus(x, y, this.getCellStatus(x, y) !== CellStatus.TAGGED ? CellStatus.TAGGED : CellStatus.INACTIVE, true);
+    this.setCellStatus(x, y, CellStatus.UNMARKED, true);
 };
