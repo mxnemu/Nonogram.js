@@ -185,7 +185,6 @@ Board.prototype.serialize = function () {
 Board.prototype.restore = function (serialized) {
     this.iWidth = serialized.width;
     this.iHeight = serialized.height;
-    this.history = new History();
     this.history.restore(serialized.history);
 };
 
