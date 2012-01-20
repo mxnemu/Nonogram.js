@@ -12,7 +12,9 @@ function GameBoard(iWidth, iHeight) {
 GameBoard.prototype = new Board(); // inherit
 
 GameBoard.prototype.onClick = function(x, y) {
-    this.setCellStatus(x, y, this.getCellStatus(x, y) !== CellStatus.ACTIVE ? CellStatus.ACTIVE : CellStatus.INACTIVE, true);
+    if (!this.solution) return;
+
+    this.setCellStatus(x, y, this.getCellStatus(x, y) !== CellStatus.INACTIVE ? CellStatus.INACTIVE : CellStatus.ACTIVE, true);
     if (!this.history.getCurrent().isValid(this.solution)) {
         // Fehlerposition speichern
     }
@@ -21,5 +23,6 @@ GameBoard.prototype.onClick = function(x, y) {
 };
 
 GameBoard.prototype.onRightClick = function(x, y) {
+    if (!this.solution) return;
     this.setCellStatus(x, y, CellStatus.UNMARKED, true);
 };
