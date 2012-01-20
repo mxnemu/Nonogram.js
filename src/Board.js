@@ -158,13 +158,13 @@ Board.prototype.setSolution = function (snapshot) {
                 c++; // heh
             } else if (c > 0) {
                 // Push a label with the count and reset.
-                createLabel(c).appendTo(this.verticalLabelContainers[y]);
+                createLabel(c).prependTo(this.verticalLabelContainers[y]);
                 c = 0;
             }
         }
 
         if (c > 0) {
-            createLabel(c).appendTo(this.verticalLabelContainers[y]);
+            createLabel(c).prependTo(this.verticalLabelContainers[y]);
         }
     }
 };
