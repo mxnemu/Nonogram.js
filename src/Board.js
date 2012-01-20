@@ -35,8 +35,10 @@ Board.prototype.createNodes = function () {
         c, // column (<td>)
         x,
         y,
-        cw,
-        ch,
+        lw, // label width
+        lh, // label height
+        lc, // label container dummy
+        lcp, // label container padding
         leftDown = false,
         rightDown = false;
 
@@ -66,15 +68,18 @@ Board.prototype.createNodes = function () {
     b = $('<div/>').addClass('board');
 
     t = $('<table/>');
-    cw = $('<div class="board"><div class="cell" /></div>').find('.cell').width();
-    ch = $('<div class="board"><div class="cell" /></div>').find('.cell').height();
+    lw = $('<div class="board"><div class="label-container vertical"><div class="label"></div></div></div>').find('.label').width();
+    lh = $('<div class="board"><div class="label-container horizontal"><div class="label"></div></div></div>').find('.label').height();
+
+    lc = $('<div class="board"><div class="label-container horizontal"></div></div>').find('.label-container');
+    lcp = lc.outerHeight() - lc.height();
 
     // Add the first label row.
-    fr = $('<tr/>').height(parseInt(this.iHeight / 2 * ch, 10) + ch);
+    fr = $('<tr/>');
     $('<th/>').appendTo(fr); // top-left corner
 
     for (x = 1; x <= this.iWidth; ++x) {
-        hl = $('<th/>').addClass('label-container horizontal');
+        hl = $('<th/>').addClass('label-container horizontal').height(Math.ceil(this.iHeight / 2) * lh + lcp);
         this.horizontalLabelContainers[x - 1] = hl;
         hl.appendTo(fr);
     }
@@ -86,7 +91,7 @@ Board.prototype.createNodes = function () {
         r = $('<tr/>');
 
         // The first item in a row is a label.
-        vl = $('<th/>').addClass('label-container vertical').width(parseInt(this.iWidth / 2 * cw, 10));
+        vl = $('<th/>').addClass('label-container vertical').width(Math.ceil(this.iWidth / 2) * lw);
         this.verticalLabelContainers[y - 1] = vl;
         vl.appendTo(r);
 

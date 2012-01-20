@@ -71,7 +71,8 @@ EditorScreen.prototype.createOptionNode = function() {
     });
 
     this.optionNode.find('input[name="editor-load"]').click(function() {
-        _this.load(_this.optionNode.find('select[name="editor-presets"]').val(), _this);
+        var selection = _this.optionNode.find('select[name="editor-presets"]').val();
+        if (selection) _this.load(selection, _this);
     });
 
     return this.optionNode;
