@@ -41,12 +41,19 @@ GameScreen.prototype.createOptionNode = function() {
                 + '<table>'
                     + '<tr>'
                         + '<td><input name="game-prev" type="button" value="&laquo; prev" /></td>'
-                        + '<td><input name="game-next" type="button" value="next &raquo;" /></td>'
+                        //+ '<td><input name="game-next" type="button" value="next &raquo;" /></td>'
                     + '</tr>'
                 + '</table>'
             + '</fieldset>'
         +'</div>'
     );
+
+    this.optionNode.find('input[name="game-prev"]').click(function () {
+        _this.board.prev();
+    });
+    this.optionNode.find('input[name="game-next"]').click(function () {
+        _this.board.next();
+    });
 
     this.optionNode.find('input[name="game-load"]').click(function() {
         var selection = _this.optionNode.find('select[name="editor-presets"]').val();

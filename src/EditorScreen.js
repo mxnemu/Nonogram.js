@@ -73,7 +73,7 @@ EditorScreen.prototype.createOptionNode = function() {
 
     this.optionNode.find('input[name="editor-save"]').click(function() {
         var name = _this.optionNode.find('input[name="editor-gamename"]').val();
-        
+
         if (name) {
             _this.save(name, _this);
             _this.destroyOptionNode();
@@ -85,13 +85,13 @@ EditorScreen.prototype.createOptionNode = function() {
         var selection = _this.optionNode.find('select[name="editor-presets"]').val();
         if (selection) _this.load(selection, _this);
     });
-    
+
     this.optionNode.find('input[name="editor-delete"]').click(function() {
         var selection = _this.optionNode.find('select[name="editor-presets"]').val();
         if (selection) {
             if (confirm("Do you really want to delete " + selection + "?")) {
 
-                /// Delete a board from the local Storage                
+                /// Delete a board from the local Storage
                 var sPresetNonograms = window.localStorage.getItem("presetNonograms");
                 if (!sPresetNonograms || sPresetNonograms == "" || sPresetNonograms == "null") {
                     sPresetNonograms = "{}";
@@ -99,11 +99,11 @@ EditorScreen.prototype.createOptionNode = function() {
 
                 var aPresetNonograms = JSON.parse(sPresetNonograms);
                 delete aPresetNonograms[selection];
-                
+
                 if(aPresetNonograms.length == 0) aPresetNonograms = null; // reset
-                
+
                 window.localStorage.setItem("presetNonograms", JSON.stringify(aPresetNonograms));
-                
+
                 _this.destroyOptionNode();
                 $('#controls').append(_this.createOptionNode());
             }
