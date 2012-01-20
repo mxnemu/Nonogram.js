@@ -44,11 +44,15 @@ button {
     border: none;
     background: -moz-linear-gradient(90deg, #555555, #888888);
     box-shadow: 0px -1px 0px 0px rgba(255, 255, 255, 0.6);
-    color: #222222;
+    color: #333333;
     font-weight: bold;
     height: 22px;
     padding-bottom: 3px;
     text-shadow: 0px 1px 0px rgba(255, 255, 255, 0.4);
+}
+input[type="button"]:active,
+button:active {
+    color: #222222;
 }
 
 fieldset {
@@ -102,13 +106,13 @@ fieldset legend {
     background-color: red;
 }
 .board .cell.cell-status-1 { /* tagged */
-    background-color: gray;
+    background-color: #BBBBBB;
 }
 .board .cell.cell-status-2 { /* active */
-    background-color: black;
+    background-color: #000000;
 }
 .board .cell.cell-status-3 { /* inactive */
-    background-color: lightgray;
+    background-color: #EEEEEE;
 }
 
 .board .label-container {
