@@ -15,3 +15,17 @@ function GameBoard(iWidth, iHeight, oDifficulty, oHistory, oSolution) {
 }
 
 GameBoard.prototype = new Board(); // inherit
+
+/**
+ * onClick
+ */
+EditorBoard.prototype.onClick = function(x, y) {
+    this.setCellStatus(x, y, this.getCellStatus(x, y) == CellStatus.ACTIVE? CellStatus.INACTIVE : CellStatus.ACTIVE);
+};
+
+/**
+ * onRightClick
+ */
+EditorBoard.prototype.onRightClick = function(x, y) {
+    this.setCellStatus(x, y, CellStatus.TAGGED);
+};
