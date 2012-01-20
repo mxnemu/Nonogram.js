@@ -7,7 +7,7 @@ function Screen(board) {
 }
 
 Screen.prototype.save = function (name) {
-    if (this.board !== null) throw "Could not save `" + name + "'.";
+    if (this.board === null) throw "Could not save `" + name + "'.";
     window.localStorage.setItem(name, JSON.stringify(this.board.serialize()));
 };
 
