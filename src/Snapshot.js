@@ -21,8 +21,8 @@ function Snapshot() {
         this.cells = [];
 
         // Initialize all cells.
-        for (y = 0; y < this.width; ++y) {
-            for (x = 0; x < this.height; ++x) {
+        for (y = 0; y < this.height; ++y) {
+            for (x = 0; x < this.width; ++x) {
                 this.cells[y * this.width + x] = args[2] || CellStatus.INVALID;
             }
         }
@@ -44,12 +44,14 @@ Snapshot.prototype.isEqual = function (other) {
  */
 Snapshot.prototype.isValid = function(solutionSnapshot) {
     var x, y,
+        cell,
         valid = true,
         solution = window.APP.oGame.solution;
 
     for (y = 0; y < this.height; y += 1) {
         for (x = 0; x < this.width; x += 1) {
-            if (this.cells[x][y] !== solution.cells[x][y]) {
+            cell = this.cells[x][y];
+            if ( cell !== CellStatus.UNMARKED && cell !== solution.cells[x][y]) {
                 valid = false;
                 break;
             }

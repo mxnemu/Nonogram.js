@@ -22,7 +22,7 @@ EditorScreen.prototype.createOptionNode = function() {
         sPresetNonograms = "{}";
     }
     var aPresetNonograms = JSON.parse(sPresetNonograms);
-    
+
     var sSelectBox = "<select size='5' name='editor-presetMapList' id='editor-presetMapList'>";
     $.each(aPresetNonograms, function(key) {
         sSelectBox += "<option>" + key + "</option>";
@@ -35,8 +35,8 @@ EditorScreen.prototype.createOptionNode = function() {
             + '<fieldset>'
                 + '<legend>Create</legend>'
                 + '<table>'
-                    + '<tr><th>Width</th><td><input name="editor-width" type="text" /></td></tr>'
-                    + '<tr><th>Height</th><td><input name="editor-height" type="text" /></td></tr>'
+                    + '<tr><th>Width</th><td><input name="editor-width" type="text" value="10" /></td></tr>'
+                    + '<tr><th>Height</th><td><input name="editor-height" type="text" value="10" /></td></tr>'
                 + '</table>'
                 + '<input name="editor-create" type="button" value="create" />'
             + '</fieldset>'
@@ -54,6 +54,17 @@ EditorScreen.prototype.createOptionNode = function() {
             + '</fieldset>'
         + '</div>'
     );
+
+    this.optionNode.find('input[name="editor-create"]').click(function () {
+        var width = parseInt(_this.optionNode.find('input[name="editor-width"]').val(), 10),
+            height = parseInt(_this.optionNode.find('input[name="editor-height"]').val(), 10);
+
+        if (!isNaN(width) && !isNaN(height)) {
+            console.log(width, height);
+            _this.setBoard(new EditorBoard(width, height));
+            _this.redraw();
+        }
+    });
 
     this.optionNode.find('input[name="editor-save"]').click(function() {
         _this.save(_this.optionNode.find('input[name="editor-gamename"]').val(), _this);
