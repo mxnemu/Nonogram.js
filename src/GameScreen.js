@@ -63,5 +63,7 @@ Screen.prototype.loadPreset = function (name) {
     var oSolutionBoard = new Board();
     oSolutionBoard.restore(serialized);
     this.redraw();
+    this.setBoard(new GameBoard(oSolutionBoard.iWidth, oSolutionBoard.iHeight));
+    this.redraw();
     this.board.setSolution(oSolutionBoard.history.getCurrent());
 };
