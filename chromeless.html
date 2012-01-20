@@ -1,0 +1,75 @@
+<!-- This webpage controls the top level rendering of the browser.  it's
+     the first document that is loaded. and defines the look and feel of
+     the browser.  --> 
+
+<html>
+  <head>
+    <!-- What if the title of the top level document dictated the os level
+         process/application name? -->
+    <title>Nonogram.js</title>
+
+<!-- given that we're locked to a recent version of the gecko rendering engine,
+     we can use snazzy modern features like flexbox layout. -->
+    <style type="text/css" media="screen">
+
+body {
+  background-color: #FFF;
+  padding: 0;
+  margin: 0;
+}
+
+#contentFrame {
+/*  -moz-box-flex: 1; */
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+    </style>
+  </head>
+  <body>
+  
+      <!-- what if iframes were how the browser HTML embedded web content?
+           what if a new attribute were introduced which controlled priviledge
+           level of content loaded in an iframe? --> 
+      <iframe id="contentFrame" privilege="content" src="index.html"></iframe>
+  </body>
+  <!-- Could the browser itself leverage a framework like YUI or jquery?
+       This shouldn't be that much different than slamming YUI into node.js
+       or jquery into jetpacks? -->
+  <script type="text/javascript" src="lib/jquery.js"></script>
+  <script type="text/javascript">
+  
+  $(document).ready(function() {
+// Fullscreen
+     var fullscreen = require('fullscreen');
+//     fullscreen.enable();
+     
+     var isInFullscreen = false;
+     
+     var hotkey = require('hotkey');
+     
+     hotkey.register("any-m", function()
+     {
+        if(isInFullscreen)
+          fullscreen.disable();
+        else
+          fullscreen.enable();
+          
+        isInFullscreen = !isInFullscreen;
+     });
+     
+
+     
+     var chromelessDirectory = require('app-paths').curDir;
+     console.log(chromelessDirectory);
+     
+     window.resizeTo(1024 + 48, 768 + 40);
+
+// redirecting seems to block localStorage arghhh     
+//     $("iframe#contentFrame").attr("src", "file://"+chromelessDirectory+"/browser_code/index.html");
+
+  });
+
+  </script>
+</html>
