@@ -3,7 +3,7 @@
  */
 var CellStatus = {
     INVALID:  0,
-    UNMARKED: 1,
+    TAGGED:   1,
     ACTIVE:   2,
     INACTIVE: 3,
 

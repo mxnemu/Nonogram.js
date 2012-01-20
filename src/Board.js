@@ -34,7 +34,30 @@ Board.prototype.createNodes = function () {
         x,
         y,
         cw,
-        ch;
+        ch,
+        leftDown = false,
+        rightDown = false;
+
+    $(document).mouseup(function (e) {
+        e.preventDefault();
+
+        if (e.which == 1) {
+            leftDown = false;
+            _this.onDragStop();
+        } else if (e.which == 3) {
+            rightDown = false;
+            _this.onRightDragStop();
+        }
+    }).mouseleave(function () {
+        if (leftDown) {
+            leftDown = false;
+            _this.onDragStop();
+        }
+        if (rightDown) {
+            rightDown = false;
+            _this.onRightDragStop();
+        }
+    });
 
     // Create the nodes.
     this.node = $('<table/>').addClass('board');
@@ -67,13 +90,25 @@ Board.prototype.createNodes = function () {
             c = $('<td/>').addClass('cell');
 
             // Bind the cell.
-            c.click(function (e) {
+            c.mousedown(function (e) {
                 e.preventDefault();
-                _this.onClick(x, y);
-            });
-            c.bind('contextmenu', function (e) {
+
+                if (e.which == 1) {
+                    leftDown = true;
+                    _this.onDragStart(x, y);
+                    _this.onEnter(x, y);
+                } else if (e.which == 3) {
+                    rightDown = true;
+                    _this.onRightDragStart(x, y);
+                    _this.onRightEnter(x, y);
+                }
+            }).mouseenter(function (e) {
                 e.preventDefault();
-                _this.onRightClick(x, y);
+
+                if (leftDown) _this.onEnter(x, y);
+                if (rightDown) _this.onRightEnter(x, y);
+            }).bind('contextmenu', function (e) {
+                e.preventDefault();
             });
 
             // Store the cell.
@@ -199,5 +234,9 @@ Board.prototype.restore = function (serialized) {
     this.history.restore(serialized.history);
 };
 
-Board.prototype.onClick = function (x, y) {};
-Board.prototype.onRightClick = function (x, y) {};
+Board.prototype.onEnter = function (x, y) {};
+Board.prototype.onRightEnter = function (x, y) {};
+Board.prototype.onDragStart = function (x, y) {};
+Board.prototype.onRightDragStart = function (x, y) {};
+Board.prototype.onDragStop = function () {};
+Board.prototype.onRightDragStop = function () {};

@@ -50,7 +50,7 @@ Snapshot.prototype.isValid = function(solution) {
     for (y = 0; y < this.height; y += 1) {
         for (x = 0; x < this.width; x += 1) {
             cell = this.cells[x][y];
-            if ( cell !== CellStatus.UNMARKED && cell !== solution.cells[x][y]) {
+            if ( cell !== CellStatus.TAGGED && cell !== solution.cells[x][y]) {
                 valid = false;
                 break;
             }

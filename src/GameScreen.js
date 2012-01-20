@@ -2,10 +2,8 @@
  * GameScreen constructor
  */
 function GameScreen() {
-    Screen.call(this, new GameBoard(10, 10)); // parent constructor
-    if (this.board) {
-        $('#controls').append(this.createOptionNode());
-    }
+    Screen.call(this); // parent constructor
+    $('#controls').append(this.createOptionNode());
 }
 
 GameScreen.prototype = new Screen(); // inherit
@@ -34,18 +32,15 @@ GameScreen.prototype.createOptionNode = function() {
                 + '<input name="game-load" type="button" value="load" />'
             + '</fieldset>'
             + '<fieldset>'
-                + '<legend>Utility</legend>'
-                + '<input name="game-fill" type="button" value="fill rest with white" />'
+                + '<legend>History</legend>'
+                + '<input name="game-prev" type="button" value="&laquo; prev" />'
+                + '<input name="game-next" type="button" value="next &raquo;" />'
             + '</fieldset>'
         +'</div>'
     );
 
     this.optionNode.find('input[name="game-load"]').click(function() {
         _this.loadPreset(_this.optionNode.find('select[name="editor-presetMapList"]').val(), _this);
-    });
-
-    this.optionNode.find('input[name="game-fill"]').click(function() {
-        _this.board.fill();
     });
 
     return this.optionNode;

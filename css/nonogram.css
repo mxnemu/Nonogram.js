@@ -13,7 +13,7 @@
 .board .cell.cell-status-0 { /* invalid */
     background-color: red;
 }
-.board .cell.cell-status-1 { /* unmarked */
+.board .cell.cell-status-1 { /* tagged */
     background-color: lightgray;
 }
 .board .cell.cell-status-2 { /* active */
@@ -25,13 +25,15 @@
 
 .board .label-container {
     overflow: hidden;
+    background-color: #444444;
 }
 .board .label-container.horizontal {
-    padding: 10px 1px;
+    padding: 2px 1px;
     width: 20px;
+    vertical-align: bottom;
 }
 .board .label-container.vertical {
-    padding: 1px 10px;
+    padding: 1px 2px;
     height: 22px;
 }
 .board .label-container .label {

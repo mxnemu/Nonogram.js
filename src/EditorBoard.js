@@ -14,10 +14,12 @@ EditorBoard.prototype.setCellStatus = function () {
     this.setSolution(this.history.getCurrent());
 };
 
-EditorBoard.prototype.onClick = function(x, y) {
+EditorBoard.prototype.onEnter = function(x, y) {
+    if (!this.solution) return;
     this.setCellStatus(x, y, CellStatus.ACTIVE, true);
 };
 
-EditorBoard.prototype.onRightClick = function(x, y) {
+EditorBoard.prototype.onRightEnter = function(x, y) {
+    if (!this.solution) return;
     this.setCellStatus(x, y, CellStatus.INACTIVE, true);
 };
