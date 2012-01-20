@@ -23,12 +23,12 @@ EditorScreen.prototype.createOptionNode = function() {
         window.localStorage.setItem("presetNonograms", sPresetNonograms);
     }
     var aPresetNonograms = JSON.parse(sPresetNonograms);
-    if (!aPresetNonograms || !aPresetNonograms.length) {
+/*    if (!aPresetNonograms || !aPresetNonograms.length) {
         sPresetNonograms = _this.getPresetGames();
         window.localStorage.setItem("presetNonograms", sPresetNonograms);
         aPresetNonograms = JSON.parse(sPresetNonograms);
     }
-
+*/
     var sSelectBox = '<select size="10" name="editor-presets">';
     $.each(aPresetNonograms, function(key) {
         sSelectBox += '<option>' + key + '</option>';
