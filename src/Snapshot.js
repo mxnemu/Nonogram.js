@@ -67,3 +67,17 @@ Snapshot.prototype.set = function(x, y, status) {
 Snapshot.prototype.get = function(x, y) {
     return this.cells[y * this.width + x] || CellStatus.INVALID;
 };
+
+Snapshot.prototype.serialize = function() {
+    return {
+        width: this.width,
+        height: this.height,
+        cells: this.cells
+    };
+};
+
+Snapshot.prototype.restore = function(serialized) {
+    this.width = serialized.width;
+    this.height = serialized.height;
+    this.cells = serialized.cells;
+};
