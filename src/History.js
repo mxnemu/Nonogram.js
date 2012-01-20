@@ -43,6 +43,18 @@ History.prototype.jumpTo = function(offset) {
     }
 }
 
+History.prototype.prev = function () {
+    if (this.currentOffset > 0) {
+        this.jumpTo(this.currentOffset - 1);
+    }
+};
+
+History.prototype.next = function () {
+    if (this.currentOffset < this.snapshots.length - 1) {
+        this.jumpTo(this.currentOffset + 1);
+    }
+};
+
 /**
  * @treturn Snapshot Return the current Snapshot
  */
@@ -50,22 +62,23 @@ History.prototype.getCurrent = function() {
     if (this.currentOffset != -1 && this.currentOffset < this.snapshots.length) {
         return this.snapshots[this.currentOffset];
     }
-    
+
     return null;
 }
-
 
 /**
  * push a Snapshot to the history and increase the currentOffset
  */
 History.prototype.add = function(snapshot) {
-    if (snapshot) {
-        if (this.currentOffset < this.snapshots.length - 1) {
-            this.snapshots = this.snapshots.slice(0, currentOffset);
-        }
-        this.snapshots.push(snapshot);
-        this.currentOffset++;
+    if (!snapshot) return;
+
+    if (this.currentOffset < this.snapshots.length - 1) {
+        this.snapshots = this.snapshots.slice(0, this.currentOffset);
+        this.currentOffset = this.snapshots.length - 1;
     }
+    
+    this.snapshots.push(snapshot);
+    this.currentOffset++;
 }
 
 /**

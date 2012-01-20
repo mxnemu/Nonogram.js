@@ -129,12 +129,7 @@ Board.prototype.createNodes = function () {
         r.appendTo(t);
     }
 
-    // Fill the cells.
-    for (y = 0; y < this.iHeight; ++y) {
-        for (x = 0; x < this.iWidth; ++x) {
-            this.setCellStatus(x, y, this.history.getCurrent().get(x, y), false);
-        }
-    }
+    this.fill();
 
     t.appendTo(b);
     b.appendTo(this.node);
@@ -231,6 +226,24 @@ Board.prototype.removeNodes = function () {
         this.node.remove();
         this.node = null;
     }
+};
+
+Board.prototype.fill = function () {
+    for (y = 0; y < this.iHeight; ++y) {
+        for (x = 0; x < this.iWidth; ++x) {
+            this.setCellStatus(x, y, this.history.getCurrent().get(x, y), false);
+        }
+    }
+};
+
+Board.prototype.prev = function () {
+    this.history.prev();
+    this.fill();
+};
+
+Board.prototype.next = function () {
+    this.history.next();
+    this.fill();
 };
 
 Board.prototype.serialize = function () {
