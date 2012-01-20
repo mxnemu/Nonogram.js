@@ -11,21 +11,8 @@ Screen.prototype.redraw = function () {
 };
 
 Screen.prototype.save = function (name) {
-    if (this.board === null) throw "Could not save `" + name + "'.";
-    var sPresetNonograms = window.localStorage.getItem("presetNonograms");
-    if (!sPresetNonograms || sPresetNonograms == "") {
-        sPresetNonograms = "{}";
-    }
-    
-    var aPresetNonograms = JSON.parse(sPresetNonograms);
-    aPresetNonograms[name] = this.board.serialize();
-    window.localStorage.setItem("presetNonograms", JSON.stringify(aPresetNonograms));
+
 };
 
 Screen.prototype.load = function (name) {
-    var aPresetNonograms = JSON.parse(window.localStorage.getItem("presetNonograms"));
-    var serialized = aPresetNonograms[name];
-    if (!serialized) throw "Could not load `" + name + "'.";
-    this.board.restore(serialized);
-    this.redraw();
 };
