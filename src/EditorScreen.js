@@ -1,4 +1,8 @@
 /**
  * EditorScreen constructor
  */
-function EditorScreen() {}
+function EditorScreen() {
+    Screen.call(this, new EditorBoard(10, 10)); // parent constructor
+}
+
+EditorScreen.prototype = new Screen(); // inherit
