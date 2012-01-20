@@ -4,13 +4,11 @@
  *
  *--------------------------------------------------------------------*/
 
-.board {
-    border-collapse: collapse;
-}
 .board .cell {
     border: 2px solid gray;
     width: 20px;
     height: 20px;
+    font-size: 0px;
 }
 .board .cell.cell-status-0 { /* invalid */
     background-color: red;
@@ -22,11 +20,16 @@
     background-color: white;
 }
 
+.board .label-container {
+    overflow: hidden;
+}
 .board .label-container.horizontal {
-    padding: 10px 0px;
+    padding: 10px 1px;
+    width: 20px;
 }
 .board .label-container.vertical {
-    padding: 0px 10px;
+    padding: 1px 10px;
+    height: 22px;
 }
 .board .label-container .label {
     width: 20px;
@@ -36,9 +39,7 @@
 }
 .board .label-container.horizontal .label {
     float: left;
-    margin: 0px 1px;
 }
 .board .label-container.vertical .label {
     float: right;
-    margin: 1px 0px;
 }

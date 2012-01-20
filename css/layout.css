@@ -4,15 +4,6 @@
  *
  *--------------------------------------------------------------------*/
 
-.clearfix:after {
-    content: ".";
-    display: block;
-    clear: both;
-    visibility: hidden;
-    line-height: 0;
-    height: 0;
-}
-
 h1 {
     font-size:                                          400%;
     color:                                              #DDDDDD;
