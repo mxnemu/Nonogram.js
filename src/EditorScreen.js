@@ -23,6 +23,11 @@ EditorScreen.prototype.createOptionNode = function() {
         window.localStorage.setItem("presetNonograms", sPresetNonograms);
     }
     var aPresetNonograms = JSON.parse(sPresetNonograms);
+    if (!aPresetNonograms || !aPresetNonograms.length) {
+        sPresetNonograms = _this.getPresetGames();
+        window.localStorage.setItem("presetNonograms", sPresetNonograms);
+        aPresetNonograms = JSON.parse(sPresetNonograms);
+    }
 
     var sSelectBox = '<select size="10" name="editor-presets">';
     $.each(aPresetNonograms, function(key) {
@@ -51,6 +56,7 @@ EditorScreen.prototype.createOptionNode = function() {
                 + '<legend>Load</legend>'
                 + sSelectBox
                 + '<input name="editor-load" type="button" value="load" />'
+                + '<input name="editor-delete" type="button" value="delete" />'
             + '</fieldset>'
         + '</div>'
     );
@@ -74,6 +80,30 @@ EditorScreen.prototype.createOptionNode = function() {
     this.optionNode.find('input[name="editor-load"]').click(function() {
         var selection = _this.optionNode.find('select[name="editor-presets"]').val();
         if (selection) _this.load(selection, _this);
+    });
+    
+    this.optionNode.find('input[name="editor-delete"]').click(function() {
+        var selection = _this.optionNode.find('select[name="editor-presets"]').val();
+        if (selection) {
+            if (confirm("Do you really want to delete " + selection + "?")) {
+
+                /// Delete a board from the local Storage                
+                var sPresetNonograms = window.localStorage.getItem("presetNonograms");
+                if (!sPresetNonograms || sPresetNonograms == "" || sPresetNonograms == "null") {
+                    sPresetNonograms = "{}";
+                }
+
+                var aPresetNonograms = JSON.parse(sPresetNonograms);
+                delete aPresetNonograms[selection];
+                
+                if(aPresetNonograms.length == 0) aPresetNonograms = null; // reset
+                
+                window.localStorage.setItem("presetNonograms", JSON.stringify(aPresetNonograms));
+                
+                _this.destroyOptionNode();
+                $('#controls').append(_this.createOptionNode());
+            }
+        }
     });
 
     return this.optionNode;
