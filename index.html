@@ -23,7 +23,11 @@
         <script src="src/Application.js"></script>
         <script>
             $(document).ready(function() {
-                new Application();
+                var app = new Application();
+                
+                $(window).bind( 'hashchange', function(e) {
+                    location.reload(true);
+                });
             });
         </script>
     </head>
