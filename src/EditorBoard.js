@@ -36,6 +36,13 @@ EditorBoard.prototype = new Board(); // inherit
     return this.optionNode;
 }*/
 
+EditorBoard.prototype.setCellStatus = function () {
+    Board.prototype.setCellStatus.apply(this, Array.prototype.slice.call(arguments));
+
+    // Use the current version as the solution.
+    this.setSolution(this.history.getCurrent());
+};
+
 /**
  * onClick
  */
