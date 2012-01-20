@@ -24,21 +24,30 @@ GameScreen.prototype.createOptionNode = function() {
         sSelectBox += "<option>" + key + "</option>";
     });
     sSelectBox += "</select>";
-    
+
     this.optionNode = $(
         '<div class="option-node">'
-            +'<fieldset>'
+            + '<h2>GAME</h2>'
+            + '<fieldset>'
                 + '<legend>Load</legend>'
                 + sSelectBox
                 + '<input name="game-load" type="button" value="load" />'
             + '</fieldset>'
+            + '<fieldset>'
+                + '<legend>Utility</legend>'
+                + '<input name="game-fill" type="button" value="fill rest with white" />'
+            + '</fieldset>'
         +'</div>'
     );
-    
+
     this.optionNode.find('input[name="game-load"]').click(function() {
         _this.loadPreset(_this.optionNode.find('select[name="editor-presetMapList"]').val(), _this);
     });
-    
+
+    this.optionNode.find('input[name="game-fill"]').click(function() {
+        _this.board.fill();
+    });
+
     return this.optionNode;
 }
 
@@ -50,7 +59,7 @@ Screen.prototype.loadPreset = function (name) {
     var aPresetNonograms = JSON.parse(window.localStorage.getItem("presetNonograms"));
     var serialized = aPresetNonograms[name];
     if (!serialized) throw "Could not load `" + name + "'.";
-    
+
     var oSolutionBoard = new Board();
     oSolutionBoard.restore(serialized);
     this.redraw();
