@@ -49,7 +49,8 @@ h2 {
 
         #game {
             position:                                   relative;
-            height:                                     85%;
+            padding:                                    5% 0 0 0;
+            height:                                     75%;
             overflow:                                   hidden;
         }
 
@@ -58,7 +59,6 @@ h2 {
                 float:                                  left;
                 width:                                  80%;
                 height:                                 100%;
-                background-color:                       yellow;
             }
 
             #controlls {
@@ -66,11 +66,11 @@ h2 {
                 float:                                  left;
                 width:                                  20%;
                 height:                                 100%;
-                background-color:                       green;
+                background-color:                       #444444;
             }
 
         #footer {
+            position:                                   relative;
             height:                                     5%;
             min-height:                                 20px;
-            background-color:                           red;
         }
