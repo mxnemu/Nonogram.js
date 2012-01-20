@@ -5,7 +5,7 @@ function EditorScreen() {
     Screen.call(this, new EditorBoard(10, 10)); // parent constructor
     this.optionNode = null;
     if (this.board) {
-        $('#controlls').append(this.createOptionNode());
+        $('#controls').append(this.createOptionNode());
     }
 }
 
