@@ -21,15 +21,16 @@
         <script src="src/SolutionSnapshot.js"></script>
         <script src="src/Application.js"></script>
         <script>
-            $(document).ready(function() {
-                var app = new Application();
-
-                $(window).bind( 'hashchange', function(e) {
+            (function () {
+                var redraw = function () {
                     $("#viewport").empty();
                     $("#controls").empty();
-                    var app = new Application();
-                });
-            });
+                    new Application();
+                };
+
+                $(document).ready(redraw);
+                $(window).bind('hashchange', redraw);
+            }());
         </script>
     </head>
     <body>
@@ -53,23 +54,6 @@
                 </p>
             </div>
             <div id="viewport"></div>
-
-            <!-- <div id="doc">
-                <div id="header">
-                    <h1>Nonogram.js</h1>
-                    <div id="gameModeLinks">
-                        <a href="#editor">Editor</a> |
-                        <a href="#">Game</a>
-                    </div>
-                </div>
-                <div id="game">
-                    <div id="playground"></div>
-                    <div id="controls"></div>
-                </div>
-                <div id="footer">
-                    <p>&copy;2011 &ndash; Johannes Wüller, Anton Kornelsen, Timm Brinkmann, Georg Meyer</p>
-                </div>
-            </div> -->
         </div>
     </body>
 </html>
