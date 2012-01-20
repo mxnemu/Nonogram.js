@@ -25,7 +25,9 @@
                 var app = new Application();
 
                 $(window).bind( 'hashchange', function(e) {
-                    location.reload(true);
+                    $("#viewport").empty();
+                    $("#controls").empty();
+                    var app = new Application();
                 });
             });
         </script>
