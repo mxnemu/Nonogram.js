@@ -174,8 +174,10 @@ Board.prototype.setSolution = function (snapshot) {
 };
 
 Board.prototype.removeNodes = function () {
-    this.node.remove();
-    this.node = null;
+    if (this.node !== null) {
+        this.node.remove();
+        this.node = null;
+    }
 };
 
 Board.prototype.serialize = function () {

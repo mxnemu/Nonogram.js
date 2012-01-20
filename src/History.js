@@ -26,6 +26,18 @@ History.prototype.serialize = function() {
     }
 }
 
+History.prototype.restore = function(serialized) {
+    var _this = this;
+    this.currentOffset = serialized.currentOffset;
+    this.trackNodes = serialized.trackNodes;
+    this.snapshots = new Array();
+    $.each(serialized.snapshots, function() {
+        var snapshot = new Snapshot();
+        snapshot.restore(this);
+        _this.snapshots.push(snapshot);
+    });
+}
+
 /**
  * Set the currentOffset if the given value is a valid index in this.snapshots
  */

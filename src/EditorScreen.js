@@ -26,12 +26,12 @@ EditorScreen.prototype.createOptionNode = function() {
     );
 
     this.optionNode.find('input[name="editor-load"]').click(function() {
-        _this.load(_this.optionNode.find('input[name="editor-gamename"]'));
+        _this.load(_this.optionNode.find('input[name="editor-gamename"]').val());
     });
 
     this.optionNode.find('input[name="editor-save"]').click(function() {
         _this.save(
-            _this.optionNode.find('input[name="editor-gamename"]')
+            _this.optionNode.find('input[name="editor-gamename"]').val()
             , _this
         );
     });
