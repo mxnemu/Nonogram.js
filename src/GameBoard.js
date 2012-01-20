@@ -5,22 +5,18 @@
  * @param Object oHistory game history
  * @param Object oSolution game solution snapshot
  */
-function GameBoard(iWidth, iHeight, oDifficulty, oHistory, oSolution) {
+function GameBoard(iWidth, iHeight) {
     Board.call(this, iWidth, iHeight, CellStatus.UNMARKED); // parent constructor
-
-    this.oDifficulty = oDifficulty;
-    this.oHistory = oHistory;
-    this.oSolution = oSolution;
 }
 
 GameBoard.prototype = new Board(); // inherit
 
 GameBoard.prototype.onClick = function(x, y) {
     this.setCellStatus(x, y, this.getCellStatus(x, y) !== CellStatus.ACTIVE ? CellStatus.ACTIVE : CellStatus.INACTIVE, true);
-    if (!this.oHistory.getCurrent.isValid()) {
+    if (!this.history.getCurrent().isValid()) {
         // Fehlerposition speichern
     }
-    if (this.oHistory.getCurrent.isEqual(this.solution))
+    if (this.history.getCurrent().isEqual(this.solution))
         alert("Herzlichen Glückwunsch, Sie haben gewonnen!");
 };
 
