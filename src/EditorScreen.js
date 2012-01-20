@@ -60,7 +60,6 @@ EditorScreen.prototype.createOptionNode = function() {
             height = parseInt(_this.optionNode.find('input[name="editor-height"]').val(), 10);
 
         if (!isNaN(width) && !isNaN(height)) {
-            console.log(width, height);
             _this.setBoard(new EditorBoard(width, height));
             _this.redraw();
         }
@@ -79,6 +78,9 @@ EditorScreen.prototype.createOptionNode = function() {
     return this.optionNode;
 }
 
+/**
+ * save
+ */
 EditorScreen.prototype.save = function (name) {
     if (this.board === null) throw "Could not save `" + name + "'.";
     var sPresetNonograms = window.localStorage.getItem("presetNonograms");
@@ -91,6 +93,9 @@ EditorScreen.prototype.save = function (name) {
     window.localStorage.setItem("presetNonograms", JSON.stringify(aPresetNonograms));
 }
 
+/**
+ * load
+ */
 EditorScreen.prototype.load = function (name) {
     var aPresetNonograms = JSON.parse(window.localStorage.getItem("presetNonograms"));
     var serialized = aPresetNonograms[name];
