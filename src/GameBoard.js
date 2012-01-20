@@ -20,6 +20,11 @@ GameBoard.prototype = new Board(); // inherit
  */
 GameBoard.prototype.onClick = function(x, y) {
     this.setCellStatus(x, y, this.getCellStatus(x, y) !== CellStatus.ACTIVE ? CellStatus.ACTIVE : CellStatus.INACTIVE, true);
+    if (!this.oHistory.getCurrent.isValid()) {
+        // Fehlerposition speichern
+    }
+    if (this.oHistory.getCurrent.isEqual(this.solution))
+        alert("Herzlichen Glückwunsch, Sie haben gewonnen!");
 };
 
 /**
