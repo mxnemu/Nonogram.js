@@ -19,6 +19,9 @@
 .board .cell.cell-status-2 { /* inactive */
     background-color: white;
 }
+.board .cell.cell-status-3 { /* tagged */
+    background-color: lightgray;
+}
 
 .board .label-container {
     overflow: hidden;

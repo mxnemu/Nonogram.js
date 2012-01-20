@@ -27,15 +27,19 @@ Board.prototype.createNodes = function () {
         vl, // vertical label-container
         c, // column (<td>)
         x,
-        y;
+        y,
+        cw,
+        ch;
 
     this.history.add(new Snapshot(this.iWidth, this.iHeight));
 
     // Create the nodes.
     this.node = $('<table/>').addClass('board');
-
+    cw = $('<div class="board"><div class="cell" /></div>').find('.cell').width();
+    ch = $('<div class="board"><div class="cell" /></div>').find('.cell').height();
+    
     // Add the first label row.
-    fr = $('<tr/>');
+    fr = $('<tr/>').height(parseInt(this.iHeight / 2 * ch, 10) + ch);
     $('<th/>').appendTo(fr); // top-left corner
 
     for (x = 1; x <= this.iWidth; ++x) {
@@ -51,7 +55,7 @@ Board.prototype.createNodes = function () {
         r = $('<tr/>');
 
         // The first item in a row is a label.
-        vl = $('<th/>').addClass('label-container vertical');
+        vl = $('<th/>').addClass('label-container vertical').width(parseInt(this.iWidth / 2 * cw, 10));
         this.verticalLabelContainers[y - 1] = vl;
         vl.appendTo(r);
 
