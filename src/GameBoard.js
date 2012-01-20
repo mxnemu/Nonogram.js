@@ -13,7 +13,7 @@ GameBoard.prototype = new Board(); // inherit
 
 GameBoard.prototype.onClick = function(x, y) {
     this.setCellStatus(x, y, this.getCellStatus(x, y) !== CellStatus.ACTIVE ? CellStatus.ACTIVE : CellStatus.INACTIVE, true);
-    if (!this.history.getCurrent().isValid()) {
+    if (!this.history.getCurrent().isValid(this.solution)) {
         // Fehlerposition speichern
     }
     if (this.history.getCurrent().isEqual(this.solution))

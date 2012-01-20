@@ -42,11 +42,10 @@ Snapshot.prototype.isEqual = function (other) {
 /**
  * @treturn boolean return true if the required cells are marked as sure
  */
-Snapshot.prototype.isValid = function(solutionSnapshot) {
+Snapshot.prototype.isValid = function(solution) {
     var x, y,
         cell,
-        valid = true,
-        solution = window.APP.oGame.solution;
+        valid = true;
 
     for (y = 0; y < this.height; y += 1) {
         for (x = 0; x < this.width; x += 1) {
