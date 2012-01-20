@@ -10,6 +10,10 @@ Screen.prototype.redraw = function () {
     }
 };
 
+Screen.prototype.destroyOptionNode = function() {
+    $('#controls').empty();
+}
+
 Screen.prototype.save = function (name) {
 
 };
