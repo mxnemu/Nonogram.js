@@ -29,9 +29,16 @@
     padding: 0px 10px;
 }
 .board .label-container .label {
-    float: left;
     width: 20px;
     height: 20px;
     line-height: 20px;
     background-color: gray;
+}
+.board .label-container.horizontal .label {
+    float: left;
+    margin: 0px 1px;
+}
+.board .label-container.vertical .label {
+    float: right;
+    margin: 1px 0px;
 }
