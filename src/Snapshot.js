@@ -21,8 +21,8 @@ function Snapshot() {
         this.cells = [];
 
         // Initialize all cells.
-        for (y = 0; y < this.width; ++y) {
-            for (x = 0; x < this.height; ++x) {
+        for (y = 0; y < this.height; ++y) {
+            for (x = 0; x < this.width; ++x) {
                 this.cells[y * this.width + x] = args[2] || CellStatus.INVALID;
             }
         }
