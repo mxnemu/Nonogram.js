@@ -170,8 +170,10 @@ Board.prototype.setSolution = function (snapshot) {
 };
 
 Board.prototype.removeNodes = function () {
-    this.node.remove();
-    this.node = null;
+    if (this.node !== null) {
+        this.node.remove();
+        this.node = null;
+    }
 };
 
 Board.prototype.serialize = function () {
@@ -185,7 +187,6 @@ Board.prototype.serialize = function () {
 Board.prototype.restore = function (serialized) {
     this.iWidth = serialized.width;
     this.iHeight = serialized.height;
-    this.history = new History();
     this.history.restore(serialized.history);
 };
 
