@@ -14,6 +14,18 @@ function History() {
 //    this.solution = null;
 }
 
+History.prototype.serialize = function() {
+    var aSerializedSnapshots = new Array();
+    $.each(this.snapshots, function() {
+        aSerializedSnapshots.push(this.serialize());
+    });
+    return { 
+        currentOffset: this.currentOffset,
+        snapshots: aSerializedSnapshots,
+        trackNodes: this.trackNodes    
+    }
+}
+
 /**
  * Set the currentOffset if the given value is a valid index in this.snapshots
  */
