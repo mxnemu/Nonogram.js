@@ -5,13 +5,9 @@
  * creates Empy arrays
  */
 function History() {
-
     this.snapshots = new Array();
     this.currentOffset = -1;
     this.trackNodes = new Array();
-
-//TODO not sure if solution is required in this class. It's in the UML.
-//    this.solution = null;
 }
 
 History.prototype.serialize = function() {
@@ -19,10 +15,10 @@ History.prototype.serialize = function() {
     $.each(this.snapshots, function() {
         aSerializedSnapshots.push(this.serialize());
     });
-    return { 
+    return {
         currentOffset: this.currentOffset,
         snapshots: aSerializedSnapshots,
-        trackNodes: this.trackNodes    
+        trackNodes: this.trackNodes
     }
 }
 
@@ -51,9 +47,10 @@ History.prototype.jumpTo = function(offset) {
  * @treturn Snapshot Return the current Snapshot
  */
 History.prototype.getCurrent = function() {
-    if (this.currentOffset < this.snapshots.length) {
+    if (this.currentOffset != -1 && this.currentOffset < this.snapshots.length) {
         return this.snapshots[this.currentOffset];
     }
+    
     return null;
 }
 

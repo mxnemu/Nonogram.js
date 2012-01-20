@@ -18,7 +18,7 @@ function Snapshot() {
         // Initialize all cells.
         for (y = 0; y < this.width; ++y) {
             for (x = 0; x < this.height; ++x) {
-                this.cells[y * this.width + x] = CellStatus.INVALID;
+                this.cells[y * this.width + x] = CellStatus.INACTIVE;
             }
         }
     } else if (args.length == 1 && args[0] instanceof Snapshot) {

@@ -18,12 +18,5 @@ EditorBoard.prototype.setCellStatus = function () {
  * onClick
  */
 EditorBoard.prototype.onClick = function(x, y) {
-    this.setCellStatus(x, y, this.getCellStatus(x, y) == CellStatus.ACTIVE? CellStatus.INACTIVE : CellStatus.ACTIVE);
-};
-
-/**
- * onRightClick
- */
-EditorBoard.prototype.onRightClick = function(x, y) {
-    this.onClick(x, y);
+    this.setCellStatus(x, y, this.getCellStatus(x, y) == CellStatus.ACTIVE? CellStatus.INACTIVE : CellStatus.ACTIVE, true);
 };

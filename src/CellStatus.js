@@ -8,6 +8,6 @@ var CellStatus = {
     TAGGED:   3,
 
     toClass: function (status) {
-        return status == CellStatus.INVALID ? '' : 'cell-status-' + status;
+        return 'cell-status-' + status;
     }
 };
