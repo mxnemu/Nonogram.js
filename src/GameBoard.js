@@ -19,12 +19,12 @@ GameBoard.prototype = new Board(); // inherit
  * onClick
  */
 GameBoard.prototype.onClick = function(x, y) {
-    this.setCellStatus(x, y, this.getCellStatus(x, y) == CellStatus.ACTIVE? CellStatus.INACTIVE : CellStatus.ACTIVE);
+    this.setCellStatus(x, y, this.getCellStatus(x, y) !== CellStatus.ACTIVE ? CellStatus.ACTIVE : CellStatus.INACTIVE);
 };
 
 /**
  * onRightClick
  */
 GameBoard.prototype.onRightClick = function(x, y) {
-    this.setCellStatus(x, y, CellStatus.TAGGED);
+    this.setCellStatus(x, y, this.getCellStatus(x, y) !== CellStatus.TAGGED ? CellStatus.TAGGED : CellStatus.INACTIVE);
 };
