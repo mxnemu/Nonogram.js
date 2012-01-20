@@ -58,6 +58,8 @@ EditorScreen.prototype.createOptionNode = function() {
 
     this.optionNode.find('input[name="editor-save"]').click(function() {
         _this.save(_this.optionNode.find('input[name="editor-gamename"]').val(), _this);
+        _this.destroyOptionNode();
+        $('#controls').append(_this.createOptionNode());
     });
     
     this.optionNode.find('input[name="editor-load"]').click(function() {
