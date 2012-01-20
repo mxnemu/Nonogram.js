@@ -39,7 +39,7 @@ Board.prototype.createNodes = function () {
     $('<th/>').appendTo(fr); // top-left corner
 
     for (x = 1; x <= this.iWidth; ++x) {
-        hl = $('<th/>').addClass('label-container clearfix horizontal');
+        hl = $('<th/>').addClass('label-container horizontal');
         this.horizontalLabelContainers[x - 1] = hl;
         hl.appendTo(fr);
     }
@@ -51,7 +51,7 @@ Board.prototype.createNodes = function () {
         r = $('<tr/>');
 
         // The first item in a row is a label.
-        vl = $('<th/>').addClass('label-container clearfix vertical');
+        vl = $('<th/>').addClass('label-container vertical');
         this.verticalLabelContainers[y - 1] = vl;
         vl.appendTo(r);
 
