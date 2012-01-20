@@ -9,10 +9,11 @@ function Screen(board) {
 Screen.prototype.save = function (name) {
     if (this.board === null) throw "Could not save `" + name + "'.";
     window.localStorage.setItem(name, JSON.stringify(this.board.serialize()));
+    console.log(window.localStorage[name]);
 };
 
 Screen.prototype.load = function (name) {
     var serialized = window.localStorage.getItem(name);
     if (!serialized) throw "Could not load `" + name + "'.";
-    this.board.restore(serialized);
+    this.board.restore(JSON.parse(serialized));
 };
