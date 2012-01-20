@@ -44,7 +44,8 @@ GameScreen.prototype.createOptionNode = function() {
     );
 
     this.optionNode.find('input[name="game-load"]').click(function() {
-        _this.loadPreset(_this.optionNode.find('select[name="editor-presets"]').val(), _this);
+        var selection = _this.optionNode.find('select[name="editor-presets"]').val();
+        if (selection) _this.loadPreset(selection, _this);
     });
 
     return this.optionNode;
