@@ -1,8 +1,9 @@
 h1 {
     font-size: 400%;
-    color: #DDDDDD;
+    color: #222222;
     text-align: center;
     margin: 10px 0px;
+    text-shadow: #666666 0px 1px 0px;
 }
 
 a,

@@ -7,6 +7,7 @@
     width: 350px;
     height: 100%;
     background-color: #444444;
+    border-left: 1px solid #505050;
     overflow: auto;
 }
 #mode-selector {
@@ -24,11 +25,14 @@
 #copyright {
     margin: 10px;
     text-align: center;
-    color: #AAAAAA;
+    color: #222222;
+    text-shadow: #666666 0px 1px 0px;
     line-height: 130%;
+    font-size: 110%;
+    font-weight: bold;
 }
 #viewport {
-    margin-right: 350px;
+    margin-right: 351px;
     height: 100%;
     overflow: auto;
 }
