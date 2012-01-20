@@ -1,0 +1,109 @@
+h1 {
+    font-size: 400%;
+    color: #DDDDDD;
+    text-align: center;
+    margin: 10px 0px;
+}
+
+a,
+a:link,
+a:visited {
+    color: #DDDDDD;
+    text-decoration: none;
+}
+a:hover,
+a:active {
+    color: #FFFFFF;
+    text-decoration: none;
+}
+
+input,
+select {
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+fieldset {
+    border: 2px solid gray;
+    margin: 10px;
+    padding: 5px;
+}
+fieldset legend {
+    padding: 0px 5px;
+    margin-left: 5px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+
+.notice {
+    display: table;
+    width: 100%;
+    height: 100%;
+    font-size: 150%;
+    font-weight: bold;
+    color: #909090;
+}
+.notice p {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+}
+
+.board-container {
+    width: 100%;
+    height: 100%;
+    display: table;
+}
+.board {
+    display: table-cell;
+    vertical-align: middle;
+}
+.board > table {
+    margin: 50px auto;
+}
+.board .cell {
+    border: 2px solid gray;
+    width: 20px;
+    height: 20px;
+    font-size: 0px;
+}
+.board .cell.cell-status-0 { /* invalid */
+    background-color: red;
+}
+.board .cell.cell-status-1 { /* tagged */
+    background-color: lightgray;
+}
+.board .cell.cell-status-2 { /* active */
+    background-color: black;
+}
+.board .cell.cell-status-3 { /* inactive */
+    background-color: white;
+}
+
+.board .label-container {
+    overflow: hidden;
+    background-color: #444444;
+}
+.board .label-container.horizontal {
+    padding: 2px 1px;
+    width: 20px;
+    vertical-align: bottom;
+}
+.board .label-container.vertical {
+    padding: 1px 2px;
+    height: 22px;
+}
+.board .label-container .label {
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    background-color: gray;
+}
+.board .label-container.horizontal .label {
+    float: left;
+}
+.board .label-container.vertical .label {
+    float: right;
+}

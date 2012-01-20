@@ -4,8 +4,8 @@
         <title>Nonogram.js</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <link charset="utf-8" rel="stylesheet" media="all" type="text/css" href="css/reset.css" />
+        <link charset="utf-8" rel="stylesheet" media="all" type="text/css" href="css/widgets.css" />
         <link charset="utf-8" rel="stylesheet" media="all" type="text/css" href="css/layout.css" />
-        <link charset="utf-8" rel="stylesheet" media="all" type="text/css" href="css/nonogram.css" />
         <script src="lib/jquery.js"></script>
         <script src="src/Widget.js"></script>
         <script src="src/Snapshot.js"></script>
@@ -31,8 +31,23 @@
         </script>
     </head>
     <body>
-        <div id="center">
-            <div id="doc">
+        <div id="main">
+            <div id="sidebar">
+                <h1>Nonogram.js</h1>
+                <div id="mode-selector">
+                    <a href="#editor">Editor</a> |
+                    <a href="#">Game</a>
+                </div>
+                <div id="controls"></div>
+                <p id="copyright">
+                    Copyright &copy;2011<br />
+                    Johannes&nbsp;Wüller, Anton Kornelsen,<br />
+                    Timm Brinkmann, Georg Meyer
+                </p>
+            </div>
+            <div id="viewport"></div>
+
+            <!-- <div id="doc">
                 <div id="header">
                     <h1>Nonogram.js</h1>
                     <div id="gameModeLinks">
@@ -47,7 +62,7 @@
                 <div id="footer">
                     <p>&copy;2011 &ndash; Johannes Wüller, Anton Kornelsen, Timm Brinkmann, Georg Meyer</p>
                 </div>
-            </div>
+            </div> -->
         </div>
     </body>
 </html>

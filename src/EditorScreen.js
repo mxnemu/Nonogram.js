@@ -23,15 +23,14 @@ EditorScreen.prototype.createOptionNode = function() {
     }
     var aPresetNonograms = JSON.parse(sPresetNonograms);
 
-    var sSelectBox = "<select size='5' name='editor-presetMapList' id='editor-presetMapList'>";
+    var sSelectBox = '<select size="10" name="editor-presets">';
     $.each(aPresetNonograms, function(key) {
-        sSelectBox += "<option>" + key + "</option>";
+        sSelectBox += '<option>' + key + '</option>';
     });
-    sSelectBox += "</select>";
+    sSelectBox += '</select>';
 
     this.optionNode = $(
-          '<div class="option-node" id="option-node-editor">'
-            + '<h2>EDITOR</h2>'
+          '<div>'
             + '<fieldset>'
                 + '<legend>Create</legend>'
                 + '<table>'
@@ -72,7 +71,7 @@ EditorScreen.prototype.createOptionNode = function() {
     });
 
     this.optionNode.find('input[name="editor-load"]').click(function() {
-        _this.load(_this.optionNode.find('select[name="editor-presetMapList"]').val(), _this);
+        _this.load(_this.optionNode.find('select[name="editor-presets"]').val(), _this);
     });
 
     return this.optionNode;

@@ -16,7 +16,7 @@ Screen.prototype.setBoard = function (board) {
 Screen.prototype.redraw = function () {
     if (this.board !== null) {
         this.board.removeNodes();
-        $('#playground').append(this.board.createNodes());
+        $('#viewport').empty().append(this.board.createNodes());
     }
 };
 

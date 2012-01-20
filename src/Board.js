@@ -26,6 +26,8 @@ Board.prototype = new Widget(); // inherit
 
 Board.prototype.createNodes = function () {
     var _this = this,
+        b, // board
+        t, // table
         r, // row (<tr>)
         fr, // first row (labels)
         hl, // horizontal label-container
@@ -60,7 +62,10 @@ Board.prototype.createNodes = function () {
     });
 
     // Create the nodes.
-    this.node = $('<table/>').addClass('board');
+    this.node = $('<div/>').addClass('board-container');
+    b = $('<div/>').addClass('board');
+
+    t = $('<table/>');
     cw = $('<div class="board"><div class="cell" /></div>').find('.cell').width();
     ch = $('<div class="board"><div class="cell" /></div>').find('.cell').height();
 
@@ -74,7 +79,7 @@ Board.prototype.createNodes = function () {
         hl.appendTo(fr);
     }
 
-    fr.appendTo(this.node);
+    fr.appendTo(t);
 
     // Add the cells.
     for (y = 1; y <= this.iHeight; ++y) {
@@ -116,7 +121,7 @@ Board.prototype.createNodes = function () {
             c.appendTo(r);
         }(x - 1, y - 1));
 
-        r.appendTo(this.node);
+        r.appendTo(t);
     }
 
     // Fill the cells.
@@ -125,6 +130,9 @@ Board.prototype.createNodes = function () {
             this.setCellStatus(x, y, this.history.getCurrent().get(x, y), false);
         }
     }
+
+    t.appendTo(b);
+    b.appendTo(this.node);
 
     return this.node;
 };

@@ -3,6 +3,7 @@
  */
 function GameScreen() {
     Screen.call(this); // parent constructor
+    $('#viewport').html('<div class="notice"><p>Please select a Puzzle &raquo;</p></div>');
     $('#controls').append(this.createOptionNode());
 }
 
@@ -17,15 +18,14 @@ GameScreen.prototype.createOptionNode = function() {
     }
     var aPresetNonograms = JSON.parse(sPresetNonograms);
 
-    var sSelectBox = "<select size='5' name='editor-presetMapList' id='editor-presetMapList'>";
+    var sSelectBox = '<select size="10" name="editor-presets">';
     $.each(aPresetNonograms, function(key) {
-        sSelectBox += "<option>" + key + "</option>";
+        sSelectBox += '<option>' + key + '</option>';
     });
-    sSelectBox += "</select>";
+    sSelectBox += '</select>';
 
     this.optionNode = $(
-        '<div class="option-node">'
-            + '<h2>GAME</h2>'
+        '<div>'
             + '<fieldset>'
                 + '<legend>Load</legend>'
                 + sSelectBox
@@ -33,14 +33,18 @@ GameScreen.prototype.createOptionNode = function() {
             + '</fieldset>'
             + '<fieldset>'
                 + '<legend>History</legend>'
-                + '<input name="game-prev" type="button" value="&laquo; prev" />'
-                + '<input name="game-next" type="button" value="next &raquo;" />'
+                + '<table>'
+                    + '<tr>'
+                        + '<td><input name="game-prev" type="button" value="&laquo; prev" /></td>'
+                        + '<td><input name="game-next" type="button" value="next &raquo;" /></td>'
+                    + '</tr>'
+                + '</table>'
             + '</fieldset>'
         +'</div>'
     );
 
     this.optionNode.find('input[name="game-load"]').click(function() {
-        _this.loadPreset(_this.optionNode.find('select[name="editor-presetMapList"]').val(), _this);
+        _this.loadPreset(_this.optionNode.find('select[name="editor-presets"]').val(), _this);
     });
 
     return this.optionNode;
