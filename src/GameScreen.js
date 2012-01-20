@@ -13,8 +13,9 @@ GameScreen.prototype.createOptionNode = function() {
 
     var sPresetNonograms = window.localStorage.getItem("presetNonograms");
     var _this = this;
-    if (!sPresetNonograms || sPresetNonograms == "") {
-        sPresetNonograms = "{}";
+    if (!sPresetNonograms || sPresetNonograms == "" || sPresetNonograms == "null") {
+        sPresetNonograms = _this.getPresetGames();
+        window.localStorage.setItem("presetNonograms", sPresetNonograms);
     }
     var aPresetNonograms = JSON.parse(sPresetNonograms);
 
