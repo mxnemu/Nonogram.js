@@ -37,7 +37,7 @@ Board.prototype.createNodes = function () {
     this.node = $('<table/>').addClass('board');
     cw = $('<div class="board"><div class="cell" /></div>').find('.cell').width();
     ch = $('<div class="board"><div class="cell" /></div>').find('.cell').height();
-    
+
     // Add the first label row.
     fr = $('<tr/>').height(parseInt(this.iHeight / 2 * ch, 10) + ch);
     $('<th/>').appendTo(fr); // top-left corner
@@ -84,7 +84,7 @@ Board.prototype.createNodes = function () {
     // Fill the cells.
     for (y = 0; y < this.iHeight; ++y) {
         for (x = 0; x < this.iWidth; ++x) {
-            this.setCellStatus(x, y, CellStatus.INACTIVE);
+            this.setCellStatus(x, y, this.history.getCurrent().get(x, y), false);
         }
     }
 
@@ -95,7 +95,7 @@ Board.prototype.getCellStatus = function (x, y) {
     return this.history.getCurrent().get(x, y) || CellStatus.INVALID;
 };
 
-Board.prototype.setCellStatus = function (x, y, newStatus) {
+Board.prototype.setCellStatus = function (x, y, newStatus, addToHistory) {
     var newSnapshot = new Snapshot(this.history.getCurrent()),
         cellNode = this.cellNodes[y * this.iWidth + x],
         currentStatus = this.getCellStatus(x, y);
@@ -105,8 +105,10 @@ Board.prototype.setCellStatus = function (x, y, newStatus) {
     cellNode.addClass(CellStatus.toClass(newStatus));
 
     // Update history.
-    newSnapshot.set(x, y, newStatus);
-    this.history.add(newSnapshot);
+    if (addToHistory) {
+        newSnapshot.set(x, y, newStatus);
+        this.history.add(newSnapshot);
+    }
 };
 
 Board.prototype.setSolution = function (snapshot) {
