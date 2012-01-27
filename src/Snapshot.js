@@ -94,6 +94,7 @@ Snapshot.prototype.serialize = function() {
         cells: this.cells
     };
 };
+
 /*
  * Restore this from the given serialized Object.
  * @tparm Object serialized Snapshot Object.
