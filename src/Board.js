@@ -24,6 +24,13 @@ function Board(iWidth, iHeight, defaultCellStatus) {
 
 Board.prototype = new Widget(); // inherit
 
+
+/**
+ * Create the nodes for all the cells and hints for the solution at the border.
+ * The cells are stored in <td> tags with the css class .cell
+ * The horizontal hint labels are stored in <th> tags with the css calsses .label-container .horizontal
+ * The vertical hint labels are stored in <td> tags with the css calsses .label-container .vertical
+ */
 Board.prototype.createNodes = function () {
     var _this = this,
         b, // board
@@ -137,10 +144,23 @@ Board.prototype.createNodes = function () {
     return this.node;
 };
 
+/**
+ * Get the cellStatus for the cell at the given coords.
+ * If the cell is not accessable return CellStatus.INVALID as error value.
+ * @tparm int x x-position of the cell.
+ * @tparm int y y-position of the cell.
+*/
 Board.prototype.getCellStatus = function (x, y) {
     return this.history.getCurrent().get(x, y) || CellStatus.INVALID;
 };
 
+/**
+ * Update the cellStatus and the node for the cell at the given coords.
+ * @tparm int x x-position of the cell to set.
+ * @tparm int y y-position of the cell to set.
+ * @tparm CellStatus newStatus new Status of the cell.
+ * @tparm Boolean addToHistory add the modification to the history if true.
+ */
 Board.prototype.setCellStatus = function (x, y, newStatus, addToHistory) {
     var newSnapshot = new Snapshot(this.history.getCurrent()),
         cellNode = this.cellNodes[y * this.iWidth + x],
@@ -157,6 +177,11 @@ Board.prototype.setCellStatus = function (x, y, newStatus, addToHistory) {
     }
 };
 
+/**
+ * Set the SolutionSnapshot.
+ * Generate hints on the table boarders.
+ * @tparm SolutionSnapshot snapshot setter value for this.solution
+ */
 Board.prototype.setSolution = function (snapshot) {
     var c, // continuous count
         s, // status
@@ -221,6 +246,9 @@ Board.prototype.setSolution = function (snapshot) {
     }
 };
 
+/**
+ * remove the board from the page if it was added and null this.node.
+ */
 Board.prototype.removeNodes = function () {
     if (this.node !== null) {
         this.node.remove();
@@ -228,6 +256,10 @@ Board.prototype.removeNodes = function () {
     }
 };
 
+/**
+ * Set the nodes for the cells to the values in the current Snapshot from history
+ * calls setCellStatus without modifing the history
+ */
 Board.prototype.fill = function () {
     for (y = 0; y < this.iHeight; ++y) {
         for (x = 0; x < this.iWidth; ++x) {
@@ -236,16 +268,25 @@ Board.prototype.fill = function () {
     }
 };
 
+/**
+ * update the nodes to the previous Snapshot from history, if it exists.
+ */
 Board.prototype.prev = function () {
     this.history.prev();
     this.fill();
 };
 
+/**
+ * update the nodes to the next Snapshot in history, if it exists.
+ */
 Board.prototype.next = function () {
     this.history.next();
     this.fill();
 };
 
+/**
+ * @treturn Object return a serialized copy of this.
+ */
 Board.prototype.serialize = function () {
     return {
         width:   this.iWidth,
@@ -254,15 +295,19 @@ Board.prototype.serialize = function () {
     };
 };
 
+/**
+ * Restore this from the given serialized Object.
+ * @tparm Object serialized Snapshot Object.
+ */
 Board.prototype.restore = function (serialized) {
     this.iWidth = serialized.width;
     this.iHeight = serialized.height;
     this.history.restore(serialized.history);
 };
 
-Board.prototype.onEnter = function (x, y) {};
-Board.prototype.onRightEnter = function (x, y) {};
-Board.prototype.onDragStart = function (x, y) {};
-Board.prototype.onRightDragStart = function (x, y) {};
-Board.prototype.onDragStop = function () {};
-Board.prototype.onRightDragStop = function () {};
+Board.prototype.onEnter = function (x, y) {};           ///< callBack when the mouse enters with leftClick
+Board.prototype.onRightEnter = function (x, y) {};      ///< callBack when the mouse enters with rightClick
+Board.prototype.onDragStart = function (x, y) {};       ///< callBack when the mouse starts dragging with leftClick
+Board.prototype.onRightDragStart = function (x, y) {};  ///< callBack when the mouse starts dragging with rightClick
+Board.prototype.onDragStop = function () {};            ///< callBack when the mousebutton is lifted after a leftClick drag
+Board.prototype.onRightDragStop = function () {};       ///< callBack when the mousebutton is lifted after a rightClick drag
