@@ -29,6 +29,10 @@ function Snapshot() {
     }
 }
 
+/*
+ * @tparm Snapshot other other board to compare this with.
+ * @treturn Boolean return true if the cells of this.cells are exactly equal with the cells of other.
+ */
 Snapshot.prototype.isEqual = function (other) {
     if (this.width != other.width || this.height != other.height) return false;
 
@@ -61,14 +65,28 @@ Snapshot.prototype.isValid = function(solution) {
     return valid;
 };
 
+/*
+ * Change the status of the cell at the given coords.
+ * @tparm int x x-position of the cell to change.
+ * @tparm int y y-position of the cell to change.
+ * @tparm CellStatus new status that the cell shall receive.
+ */
 Snapshot.prototype.set = function(x, y, status) {
     this.cells[y * this.width + x] = status;
 };
 
+/*
+ * Get the Cellstatus of the cell at the given coords
+ * @tparm x x-position of the cell.
+ * @tparm y y-position of the cell.
+ */
 Snapshot.prototype.get = function(x, y) {
     return this.cells[y * this.width + x] || CellStatus.INVALID;
 };
 
+/*
+ * @treturn Object return a serialized copy of this.
+ */
 Snapshot.prototype.serialize = function() {
     return {
         width: this.width,
@@ -76,7 +94,10 @@ Snapshot.prototype.serialize = function() {
         cells: this.cells
     };
 };
-
+/*
+ * Restore this from the given serialized Object.
+ * @tparm Object serialized Snapshot Object.
+ */
 Snapshot.prototype.restore = function(serialized) {
     this.width = serialized.width;
     this.height = serialized.height;
