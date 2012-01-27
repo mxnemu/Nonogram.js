@@ -1,3 +1,7 @@
+/*
+ * Handles the options menu and the board
+ * @ctor call setBoard with the given board and redraw it, once it is set
+ */
 function Screen(board) {
     this.board = null;
     this.setBoard(board);
@@ -5,6 +9,10 @@ function Screen(board) {
     this.redraw();
 }
 
+/*
+ * Set the this.board and remove the nodes of the existing board
+ * @tparm Board setter value for this.board
+ */
 Screen.prototype.setBoard = function (board) {
     if (this.board !== null) {
         this.board.removeNodes();
@@ -13,6 +21,11 @@ Screen.prototype.setBoard = function (board) {
     this.board = board || null;
 };
 
+
+/*
+ * Remove the nodes of the current board and recreate it in the #viewport.
+ * If no board is set do nothing.
+ */
 Screen.prototype.redraw = function () {
     if (this.board !== null) {
         this.board.removeNodes();
@@ -20,18 +33,31 @@ Screen.prototype.redraw = function () {
     }
 };
 
+/*
+ * clear the #controls div
+ */
 Screen.prototype.destroyOptionNode = function() {
     $('#controls').empty();
 }
 
+/*
+ * full virtual save function: will save the board and settings to the localStorage.
+ * @tparm String name name in localStorage.
+ */
 Screen.prototype.save = function (name) {
 
 };
-
+/*
+ * full virtual load function: will load the board and settings from localStorage.
+ * @tparm String name name of the serializedGame in localStorage.
+ */ 
 Screen.prototype.load = function (name) {
+
 };
 
-
+/*
+ * @treturn String returns a JSON String that contains an Object with serialized predefined boards.
+ */
 Screen.prototype.getPresetGames = function() {
     return '{'
 /*        spaceInvader: {},
