@@ -29,7 +29,7 @@ function Snapshot() {
     }
 }
 
-/*
+/**
  * @tparm Snapshot other other board to compare this with.
  * @treturn Boolean return true if the cells of this.cells are exactly equal with the cells of other.
  */
@@ -65,7 +65,7 @@ Snapshot.prototype.isValid = function(solution) {
     return valid;
 };
 
-/*
+/**
  * Change the status of the cell at the given coords.
  * @tparm int x x-position of the cell to change.
  * @tparm int y y-position of the cell to change.
@@ -75,7 +75,7 @@ Snapshot.prototype.set = function(x, y, status) {
     this.cells[y * this.width + x] = status;
 };
 
-/*
+/**
  * Get the Cellstatus of the cell at the given coords
  * @tparm x x-position of the cell.
  * @tparm y y-position of the cell.
@@ -84,7 +84,7 @@ Snapshot.prototype.get = function(x, y) {
     return this.cells[y * this.width + x] || CellStatus.INVALID;
 };
 
-/*
+/**
  * @treturn Object return a serialized copy of this.
  */
 Snapshot.prototype.serialize = function() {
@@ -95,7 +95,7 @@ Snapshot.prototype.serialize = function() {
     };
 };
 
-/*
+/**
  * Restore this from the given serialized Object.
  * @tparm Object serialized Snapshot Object.
  */
