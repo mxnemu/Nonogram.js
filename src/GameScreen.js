@@ -9,6 +9,10 @@ function GameScreen() {
 
 GameScreen.prototype = new Screen(); // inherit
 
+/**
+ * Create the DOM in the #options div.
+ * TODO: move the code creating the default presets out of here.
+ */
 GameScreen.prototype.createOptionNode = function() {
 
     var sPresetNonograms = window.localStorage.getItem("presetNonograms");
@@ -63,10 +67,17 @@ GameScreen.prototype.createOptionNode = function() {
     return this.optionNode;
 }
 
+/**
+ * TODO: save in the savegames map in localStorage with the given name.
+ */
 Screen.prototype.save = function (name) {
 
 };
 
+/**
+ * Load a board with the given name from the "presetNonograms" map that is stored in localStorage.
+ * Set and redraw the board and update the solution.
+ */
 Screen.prototype.loadPreset = function (name) {
     var aPresetNonograms = JSON.parse(window.localStorage.getItem("presetNonograms"));
     var serialized = aPresetNonograms[name];
