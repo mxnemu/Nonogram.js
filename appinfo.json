@@ -1,5 +1,6 @@
 {
   "name": "Nonogram.js",
   "version": "0.1",
-  "menubars": false
+  "menubars": false,
+  "resizable": true
 }
