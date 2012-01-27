@@ -10,6 +10,9 @@ function History() {
     this.trackNodes = new Array();
 }
 
+/**
+ * @treturn Object return a serialized copy of this.
+ */
 History.prototype.serialize = function() {
     var aSerializedSnapshots = new Array();
     $.each(this.snapshots, function() {
@@ -22,6 +25,10 @@ History.prototype.serialize = function() {
     }
 }
 
+/**
+ * Restore this from the given serialized Object.
+ * @tparm Object serialized Snapshot Object.
+ */
 History.prototype.restore = function(serialized) {
     var _this = this;
     this.currentOffset = serialized.currentOffset;
@@ -43,12 +50,18 @@ History.prototype.jumpTo = function(offset) {
     }
 }
 
+/**
+ * jump to the previous Snapshot, if there is one.
+ */
 History.prototype.prev = function () {
     if (this.currentOffset > 0) {
         this.jumpTo(this.currentOffset - 1);
     }
 };
 
+/**
+ * Jump to the next Snapshot, if it exists.
+ */
 History.prototype.next = function () {
     if (this.currentOffset < this.snapshots.length - 1) {
         this.jumpTo(this.currentOffset + 1);
